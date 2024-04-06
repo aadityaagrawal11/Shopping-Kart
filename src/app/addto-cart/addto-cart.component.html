@@ -1,0 +1,73 @@
+<p>
+    <mat-toolbar color="primary">
+
+        <span>My Cart</span>
+        <span class="example-spacer"></span>
+        <!-- <button class="m-5" mat-raised-button color="accent" (click)="addpopup()"> Add User (+) </button>
+      <button routerLink="/login" mat-raised-button color="warn" (click)="logout()"> Logout </button> -->
+      <button routerLink="/cart">
+        <mat-icon matTooltip="Cart"  [matBadge]="badgeCount"  matBadgeColor="warn" aria-hidden="false" >
+            <svg xmlns="http://www.w3.org/2000/svg" height="24"
+                viewBox="0 0 24 24" width="24">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                    d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+            </svg></mat-icon></button>
+            <button class="margin" routerLink="#" mat-raised-button color="warn"> Logout </button>
+    </mat-toolbar>
+</p>
+
+<mat-card>
+    <mat-card-header></mat-card-header>
+    <mat-card-content>
+
+        <table mat-table [dataSource]="cartItems" class="mat-elevation-z8">
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td style="width:20%" mat-cell *matCellDef="let item">{{ item.title }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="image">
+                <th mat-header-cell *matHeaderCellDef>Product Image</th>
+                <td style="width:20%" mat-cell *matCellDef="let item"> <img src="{{item.image }}" width="100px" height="100px"> </td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef>Description</th>
+                <td class="description" style="width:25%" mat-cell *matCellDef="let item">{{ item.description}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef>Price</th>
+                <td  style="width:10%" mat-cell *matCellDef="let item">{{ item.price | currency:'INR'}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="quantity">
+                <th mat-header-cell *matHeaderCellDef>Quantity</th>
+                <td style="width:10%" mat-cell *matCellDef="let item">{{ item.quantity }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef>Total Price</th>
+                <td style="width:10%" mat-cell *matCellDef="let item">{{ item.amount | currency:'INR'}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td style="width:20%" mat-cell *matCellDef="let item">
+                    <button mat-fab matTooltip="Delete" color="warn" (click)="deletepopup(item)"><mat-icon>delete</mat-icon></button></td>
+         
+                </ng-container>
+            
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card-content>
+    <mat-card-actions>
+        <button class="margin" mat-raised-button color="warn" (click)="clearAllpopup()">Empty Cart</button>
+        <button class="margin" routerLink="/dashboard"  mat-raised-button color="accent"> Shop more</button>
+        <button class="margin" mat-raised-button color="primary" >Checkout</button>
+        <h4 style="margin-left:45% ;"> <strong>Total Cost: </strong> {{calculateTotal() | currency:'INR'}}</h4>
+    </mat-card-actions>
+</mat-card>

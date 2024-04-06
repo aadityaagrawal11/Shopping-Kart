@@ -1,0 +1,15 @@
+table{
+    padding:2%;
+    margin-bottom: 2%;
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .margin {
+    margin: 3%;
+  } 
+  .description{
+    text-align: justify;
+    justify-content: center;
+    padding:2%;
+  }

@@ -1,0 +1,16 @@
+.topright {
+    position: absolute;
+    right: 0;
+    top: 0
+  }
+
+  .btn{
+    margin:2%;
+   
+  }
+  .buttons{
+    padding:2%;
+    button{
+      flex:1
+    }
+  }

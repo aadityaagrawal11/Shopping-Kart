@@ -1,0 +1,74 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.cart-container {
+    /* margin-bottom: 20px; Adjust the value as needed */
+    margin:auto;
+  }
+mat-card {
+  margin: 10%;
+  margin-bottom:13px;
+  padding: 2%;
+  /* border: 4px solid red; */
+  height: 90%;
+  width: 120%;
+}
+.mat {
+    margin-left: 45px; /* Adjust the value as needed */
+    margin-bottom: 20px; /* Adjust the value as needed */
+  }
+button {
+  margin: 2%;
+}
+
+.image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10%;
+  margin-top: 10%;
+}
+
+.description{
+    text-align: justify;
+    justify-content: center;
+    padding:2%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    max-width: 90ch;
+}
+.wrap{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  max-width: 33ch;
+}
+
+.category-selector {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-grid-list {
+  margin-top: 10px;
+}
+
+mat-grid-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+mat-grid-tile img {
+  width: 100%; /* Adjust as needed */
+  height: 150%; /* Adjust as needed */
+  object-fit: contain;
+}
+
+mat-grid-tile h3 {
+  margin-top: 10px;
+  text-align: center;
+}
