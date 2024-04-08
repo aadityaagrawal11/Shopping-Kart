@@ -1,7 +1,7 @@
 <p>
     <mat-toolbar color="primary">
 
-        <span>My Cart</span>
+        <span>Shopping kart</span>
         <span class="example-spacer"></span>
         <!-- <button class="m-5" mat-raised-button color="accent" (click)="addpopup()"> Add User (+) </button>
       <button routerLink="/login" mat-raised-button color="warn" (click)="logout()"> Logout </button> -->
@@ -70,4 +70,8 @@
         <button class="margin" mat-raised-button color="primary" >Checkout</button>
         <h4 style="margin-left:45% ;"> <strong>Total Cost: </strong> {{calculateTotal() | currency:'INR'}}</h4>
     </mat-card-actions>
+
+  <mat-card-footer>
+    <mat-paginator [pageSizeOptions]="[2,4,6]" showFirstLastButtons></mat-paginator>
+  </mat-card-footer>
 </mat-card>

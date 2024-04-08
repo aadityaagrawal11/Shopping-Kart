@@ -30,18 +30,23 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { ToastrModule } from 'ngx-toastr';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list'
+
+import { CarouselComponent } from './carousel/carousel.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     AddtoCartComponent,
     ConfirmationDialogComponent,
+    CarouselComponent,
 
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
+    NgbCarouselModule ,
     AppRoutingModule,
     HttpClientModule,
     FlexLayoutModule,

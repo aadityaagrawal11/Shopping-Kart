@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ProductService } from '../Services/product.service';
 import { forkJoin } from 'rxjs';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-addto-cart',
@@ -15,7 +18,7 @@ export class AddtoCartComponent {
 
   constructor(private _service: ProductService,private deleteDialog: MatDialog,private _snackBar: MatSnackBar,private toastr: ToastrService) {}
 
-  cartItems: any[] = [];
+  cartItems: any = [];
   displayedColumns: string[] = ['name', 'image', 'description', 'price', 'quantity', 'amount', 'action'];
   badgeCount: number | undefined;
 
@@ -23,12 +26,16 @@ export class AddtoCartComponent {
     this.getdata();
     this.calculateTotal();
   }
-
+  @ViewChild(MatSort, { static: true }) sort!: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   getdata() {
     this._service.getItem().subscribe({
       next: (res) => {
         this.cartItems = res;
+        this.cartItems = new MatTableDataSource(this.cartItems);
+        this.cartItems = res;
         //console.log(this.cartItems);
+        this.cartItems.paginator = this.paginator;
         this.badgeCount = res.length;
       },
       error: console.log,
@@ -87,9 +94,9 @@ export class AddtoCartComponent {
     })
   }
   clear() {
-    const selectedIds = this.cartItems.map((ele => ele.id));
+    const selectedIds = this.cartItems.map(((ele: { id: any; }) => ele.id));
     //console.log(selectedIds);
-    const deleteRequests = selectedIds.map(ele => this._service.deleteItem(ele));
+    const deleteRequests = selectedIds.map((ele: any) => this._service.deleteItem(ele));
 
     forkJoin(deleteRequests).subscribe(
       res => {
