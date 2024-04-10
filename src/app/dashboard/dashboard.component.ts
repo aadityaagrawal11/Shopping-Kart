@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { ProductService } from '../Services/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,14 +14,14 @@ import { Router } from '@angular/router';
 export class DashboardComponent {
 
   constructor(private http: HttpClient, private _service: ProductService,
-     private toastr: ToastrService, private router: Router) { }
+    private toastr: ToastrService, private router: Router, private productDetailDialog: MatDialog,) { }
   title = 'Shopping';
   badgevisibility = true;
   badgeCount = 0;
   registerArr: any[] = [];
-  url: string = "https://fakestoreapi.com/products";
+  url: string = "https://fakestoreapi.com/products/";
   quantity: number = 1;
-
+  filteredProducts: any[] = [];
   ngOnInit(): void {
     this.getdata();
     this.badgetotal();
@@ -30,7 +32,9 @@ export class DashboardComponent {
     this.http.get<any>(this.url).subscribe({
       next: (res) => {
         this.registerArr = res;
+
         //console.log(this.registerArr);
+        this.router.navigate(['dashboard/category/all']);
       },
       error: console.log,
 
@@ -66,36 +70,23 @@ export class DashboardComponent {
       }
     })
   }
-  
-  buttonDisable(event: MouseEvent, item: any){
-    this._service.getItem().subscribe({
-      next: (res) => {
-        res.forEach((element: any) => {
-          if (element.id === item.id) {
-            const button = event.target as HTMLButtonElement;
-            console.log(button)
-            button.innerHTML = 'Added to Cart';
-            
-            this.isdisable=true;
-            //button.disabled = true;
-          }
-        });
 
-      }
-    })
+  isInCart( item: any) {
+    return this._service.getItem().subscribe( (res) => res.id === item.id) 
   }
 
-  isdisable:boolean = false
+  isdisable: boolean = false
   addtocart(event: MouseEvent, item: any, index: any) {
+    
     console.log(item);
     this._service.postItem(item).subscribe({
       next: (res) => {
         this.badgetotal();
         this.toastr.success("Item Added Successfully !! ", 'Success Message!');
-        this.buttonDisable(event,item);
+        // this.buttonDisable(event, item);
       }
     })
- 
+
     // const button = event.target as HTMLButtonElement;
     // button.textContent = 'Added to Cart';
     // this.registerArr[index].quantity =0;
@@ -104,10 +95,25 @@ export class DashboardComponent {
 
   Filterchange(data: Event) {
     const val = (data.target as HTMLInputElement).value;
-    this.registerArr.filter((ele) => {
-      return ele.title.includes(val);
-    })
+    console.log(val)
+    this.filteredProducts = this.registerArr.filter((ele) =>
+    ele.title.toLowerCase().includes(val.toLowerCase()) 
+    );
+    console.log(this.filteredProducts);
+    setTimeout(()=>this.registerArr = this.filteredProducts,300)
+    
+   if(!val){
+    this.getdata();
+   }
   }
+  //       
+        
+  // }
+  // else{
+  //  
+  // }
+
+
   categories: string[] = ["All Products", "Electronics", "Jewelery", "Men's clothing", "Women's clothing"];
   selectedCategory: string | undefined;
 
@@ -117,7 +123,7 @@ export class DashboardComponent {
       this.getdata();
     }
     else {
-      this.http.get<any>(this.url + '/category/' + category.toLowerCase()).subscribe({
+      this.http.get<any>(this.url + 'category/' + category.toLowerCase()).subscribe({
         next: (res) => {
           this.registerArr = res;
 
@@ -128,7 +134,25 @@ export class DashboardComponent {
       })
     }
     const formattedCategoryName = category.replace(/\s+/g, '-');
-    this.router.navigate(['dashboard/category/', formattedCategoryName ]);
+    this.router.navigate(['dashboard/category/', formattedCategoryName]);
   }
+  detailpopup() {
+    // localStorage.setItem('editdialogOpen', 'true');
+    // localStorage.setItem('editdialogData', JSON.stringify(userData));
 
+
+    const detailref = this.productDetailDialog.open(ProductDetailsComponent, {
+      width: '25%',
+    });
+    detailref.afterClosed().subscribe({
+      next: (val) => {
+        if (val) this.getdata();
+
+        // localStorage.setItem('editdialogOpen', 'false');
+        // localStorage.removeItem('editdialogData')
+      }
+
+
+    })
+  }
 }

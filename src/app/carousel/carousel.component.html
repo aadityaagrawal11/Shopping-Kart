@@ -1,4 +1,4 @@
-@if (images) {
+<!-- @if (images) {
 	<ngb-carousel>
 		<ng-template ngbSlide>
 			<div class="picsum-img-wrapper">
@@ -28,4 +28,28 @@
 			</div>
 		</ng-template>
 	</ngb-carousel>
-}
+} -->
+<div class="center">
+<ngb-carousel
+	#carousel
+	[interval]="2000"
+	[pauseOnHover]="pauseOnHover"
+	[pauseOnFocus]="pauseOnFocus"
+	
+>
+	@for (img of images; track img; let i = $index) {
+		<ng-template ngbSlide>
+            <div style="height:30%;width:30%; object-fit: fill;" >
+			<div class="carousel-caption"   >
+				<h3>My slide {{ i + 1 }} title</h3>
+			</div>
+			<!-- <a href="https://www.google.fr/?q=Number+{{ i + 1 }}" target="_blank" rel="nofollow noopener noreferrer"> -->
+				<div class="picsum-img-wrapper">
+					<img class="d-block w-100"  [src]="img" alt="My image {{ i + 1 }} description" />
+				</div>
+            </div>
+			<!-- -->
+		</ng-template>
+	}
+</ngb-carousel>
+</div>

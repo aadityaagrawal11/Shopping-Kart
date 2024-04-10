@@ -68,7 +68,7 @@ mat-grid-tile {
 mat-grid-tile img {
   width: 100%; /* Adjust as needed */
   height: 150%; /* Adjust as needed */
-  object-fit:fill;
+  object-fit:cover;
 }
 
 mat-grid-tile h3 {

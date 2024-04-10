@@ -33,6 +33,7 @@ import {MatGridListModule} from '@angular/material/grid-list'
 
 import { CarouselComponent } from './carousel/carousel.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     AddtoCartComponent,
     ConfirmationDialogComponent,
     CarouselComponent,
+    ProductDetailsComponent,
 
   ],
   imports: [

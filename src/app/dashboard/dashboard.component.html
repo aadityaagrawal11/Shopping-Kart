@@ -4,7 +4,8 @@
         <span>Shopping kart</span>
         <span class="example-spacer"></span>
 
-        <!-- <input matInput (keyup)="Filterchange($event)" placeholder="Enter search text" class="filter"> -->
+        <input matInput (input)="Filterchange($event)" placeholder="Enter search text" class="filter">
+        
         <button routerLink="/cart">
             <mat-icon matTooltip="Cart" [matBadge]="badgeCount" [matBadgeHidden]="badgevisibility" matBadgeColor="warn"
                 aria-hidden="false">
@@ -18,7 +19,7 @@
     </mat-toolbar>
 </p>
 
-<app-carousel></app-carousel>
+
 
 <div class="category-selector">
 
@@ -33,6 +34,8 @@
         </mat-grid-tile>
     </mat-grid-list>
 </div>
+<br>
+<app-carousel></app-carousel>
 
 <!-- <div class="selected-category">
     <p *ngIf="selectedCategory">Selected Category: {{ selectedCategory }}</p>
@@ -67,10 +70,12 @@
                 </mat-card-content>
                 <!-- Add buttons for actions like remove or update quantity -->
                 <mat-card-actions>
-                    <button id="addToCartBtn" [disabled]="isdisable"  mat-raised-button color="primary"
+                    <button id="addToCartBtn" [hidden]="isInCart(item)"  mat-raised-button color="primary"
                         (click)="addtocart($event, item, i)"> Add to Cart </button>
-                      
+                      <button disabled="true" [hidden]="!isInCart(item)" id="addedToCartBtn" mat-raised-button color="green">Added to Cart</button>
                         <!-- [disabled]="getItemQuantity(item) === 0" -->
+
+                        <button mat-raised-button color="secondary" routerLink="/dashboard/product/{{item.id}}" (click)="detailpopup()">Product Detail </button>
                 </mat-card-actions>
             </mat-card>
         </div>
