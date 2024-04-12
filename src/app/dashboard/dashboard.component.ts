@@ -2,9 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ProductService } from '../Services/product.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
+import { async, map, Observable } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +16,7 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
 export class DashboardComponent {
 
   constructor(private http: HttpClient, private _service: ProductService,
-    private toastr: ToastrService, private router: Router, private productDetailDialog: MatDialog,) { }
+    private toastr: ToastrService, private router: Router,  private spinner: NgxSpinnerService,private productDetailDialog: MatDialog,) { }
   title = 'Shopping';
   badgevisibility = true;
   badgeCount = 0;
@@ -26,7 +28,18 @@ export class DashboardComponent {
     this.getdata();
     this.badgetotal();
   }
-
+ // {{item.id}}
+  onClick(item:any): void {
+    this.spinner.show(); // Show spinner when button is clicked
+    // Perform your navigation logic here, for example:
+    this.router.navigate(['/dashboard/product/', item.id ]).then(() => {
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.spinner.hide(); // Hide spinner when navigation ends
+        }
+      });
+    });
+  }
 
   getdata() {
     this.http.get<any>(this.url).subscribe({
@@ -52,6 +65,7 @@ export class DashboardComponent {
     this.registerArr[index].quantity = value;
     const amount = item.price * this.getItemQuantity(item)
     this.registerArr[index].amount = amount;
+    this.registerArr[index].addedToCart = false;
     this.registerArr[index].id = this.registerArr[index].id.toString();
   }
 
@@ -71,47 +85,58 @@ export class DashboardComponent {
     })
   }
 
-  isInCart( item: any) {
-    return this._service.getItem().subscribe( (res) => res.id === item.id) 
-  }
 
-  isdisable: boolean = false
+  isInCart(item: any): Observable<boolean> {
+    return this._service.getItem().pipe(
+      map((items: any[]) => {
+        console.log('Irt',items)
+        return items.some((ele: any) => ele.title === item.title);
+      })
+    );
+  }
+   buttonText:string = "Add to Cart";
+  isdisable!: boolean;
+
   addtocart(event: MouseEvent, item: any, index: any) {
-    
-    console.log(item);
+    item.addedToCart = true;
+    //console.log(item);
     this._service.postItem(item).subscribe({
       next: (res) => {
         this.badgetotal();
         this.toastr.success("Item Added Successfully !! ", 'Success Message!');
         // this.buttonDisable(event, item);
+        this.isInCart( item).subscribe((varw)=>{
+          if(varw){
+           
+           //this.buttonText ='Added to Cart';
+            // const button = event.target as HTMLButtonElement;
+            //  button.textContent = 'Added to Cart';button.disabled = true;
+
+          }
+        })
+       
+        
       }
     })
-
+ 
     // const button = event.target as HTMLButtonElement;
     // button.textContent = 'Added to Cart';
     // this.registerArr[index].quantity =0;
     //button.disabled = true;
   }
-
-  Filterchange(data: Event) {
-    const val = (data.target as HTMLInputElement).value;
-    console.log(val)
-    this.filteredProducts = this.registerArr.filter((ele) =>
-    ele.title.toLowerCase().includes(val.toLowerCase()) 
-    );
-    console.log(this.filteredProducts);
-    setTimeout(()=>this.registerArr = this.filteredProducts,300)
+  searchTerm:any;
+  Filterchange() {
+    console.log(this.searchTerm);
     
-   if(!val){
-    this.getdata();
-   }
+    this.registerArr = this.registerArr.filter((ele) =>
+    ele.title.toLowerCase().includes(this.searchTerm.toLowerCase()) 
+    );
+    console.log(this.registerArr);
+    //setTimeout(()=>this.registerArr = this.filteredProducts,300)
+    
+   if(!this.searchTerm)this.getdata();
+   
   }
-  //       
-        
-  // }
-  // else{
-  //  
-  // }
 
 
   categories: string[] = ["All Products", "Electronics", "Jewelery", "Men's clothing", "Women's clothing"];
@@ -136,6 +161,7 @@ export class DashboardComponent {
     const formattedCategoryName = category.replace(/\s+/g, '-');
     this.router.navigate(['dashboard/category/', formattedCategoryName]);
   }
+  
   detailpopup() {
     // localStorage.setItem('editdialogOpen', 'true');
     // localStorage.setItem('editdialogData', JSON.stringify(userData));

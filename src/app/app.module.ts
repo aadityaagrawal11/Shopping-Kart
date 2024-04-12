@@ -30,10 +30,11 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { ToastrModule } from 'ngx-toastr';
 import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list'
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { CarouselComponent } from './carousel/carousel.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { SearchFilterPipe } from './search-filter.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     ConfirmationDialogComponent,
     CarouselComponent,
     ProductDetailsComponent,
+    SearchFilterPipe,
 
   ],
   imports: [
@@ -72,6 +74,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     MatBadgeModule,
     MatListModule,
     MatGridListModule,
+    NgxSpinnerModule,
   ],
   providers: [
     provideClientHydration(),

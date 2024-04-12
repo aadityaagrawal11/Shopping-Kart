@@ -16,7 +16,7 @@
             <button class="margin" routerLink="#" mat-raised-button color="warn"> Logout </button>
     </mat-toolbar>
 </p>
-
+<div *ngIf="cartItems.length > 0; else emptyCart">
 <mat-card>
     <mat-card-header></mat-card-header>
     <mat-card-content>
@@ -64,14 +64,26 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </mat-card-content>
-    <mat-card-actions>
+    
+    <mat-card-actions style="padding:2%; margin:3%" class="mat-elevation-z8">
         <button class="margin" mat-raised-button color="warn" (click)="clearAllpopup()">Empty Cart</button>
         <button class="margin" routerLink="/dashboard"  mat-raised-button color="accent"> Shop more</button>
         <button class="margin" mat-raised-button color="primary" >Checkout</button>
-        <h4 style="margin-left:45% ;"> <strong>Total Cost: </strong> {{calculateTotal() | currency:'INR'}}</h4>
+        <h4 style="margin-left:45% ;"> <strong>Total Cost </strong> {{calculateTotal() | currency:'INR'}}</h4>
     </mat-card-actions>
 
-  <mat-card-footer>
+  <!-- <mat-card-footer>
     <mat-paginator [pageSizeOptions]="[2,4,6]" showFirstLastButtons></mat-paginator>
-  </mat-card-footer>
+  </mat-card-footer> -->
+
 </mat-card>
+</div>
+
+<ng-template #emptyCart>
+    <div class="empty-cart">
+        <img src="assets/empty-cart-image.png" alt="Empty Cart Image">
+        <h2>Your Cart is Empty</h2>
+        <!-- <p>Looks like your cart is empty. Start shopping now!</p> -->
+        <button routerLink="/dashboard" class="btn btn-primary">Start Shopping</button>
+      </div>
+  </ng-template>

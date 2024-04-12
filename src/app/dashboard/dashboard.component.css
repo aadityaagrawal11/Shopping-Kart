@@ -1,9 +1,17 @@
 .example-spacer {
   flex: 1 1 auto;
 }
-.cart-container {
-    /* margin-bottom: 20px; Adjust the value as needed */
-    margin:auto;
+mat-toolbar{
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+  mat-grid-tile-footer{
+    height: 44px;
+    width: 209px;
+    margin-left: 7%;
   }
 mat-card {
   margin: 10%;
@@ -42,7 +50,7 @@ button {
   white-space: nowrap;
   overflow: hidden;
   text-overflow:ellipsis;
-  max-width: 33ch;
+  max-width: 31ch;
 }
 
 .category-selector {
@@ -66,15 +74,15 @@ mat-grid-tile {
 }
 
 mat-grid-tile img {
-  width: 100%; /* Adjust as needed */
-  height: 150%; /* Adjust as needed */
+  width: 85%; /* Adjust as needed */
+  height: 120%; /* Adjust as needed */
   object-fit:cover;
 }
 
 mat-grid-tile h3 {
-  margin-top: 10px;
+  margin: 10px;
   text-align: center;
   /* border: 5px solid rgb(190, 15, 123); */
-  align-items: center;
-  justify-content: center; 
+ 
 }
+

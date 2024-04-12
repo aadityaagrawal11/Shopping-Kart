@@ -3,9 +3,9 @@
 
         <span>Shopping kart</span>
         <span class="example-spacer"></span>
+        <!-- (input)="Filterchange()" -->
+        <input matInput [(ngModel)]="searchTerm" placeholder="Enter search text" class="filter">
 
-        <input matInput (input)="Filterchange($event)" placeholder="Enter search text" class="filter">
-        
         <button routerLink="/cart">
             <mat-icon matTooltip="Cart" [matBadge]="badgeCount" [matBadgeHidden]="badgevisibility" matBadgeColor="warn"
                 aria-hidden="false">
@@ -19,9 +19,9 @@
     </mat-toolbar>
 </p>
 
+<!-- <br><br><br><br><br><br> -->
 
-
-<div class="category-selector">
+<div class="category-selector mat-elevation-z8" style="padding: 2%;margin: 2%;margin-top: 8%;">
 
     <!-- <span>Choose Category</span> -->
 
@@ -34,8 +34,10 @@
         </mat-grid-tile>
     </mat-grid-list>
 </div>
+
 <br>
-<app-carousel></app-carousel>
+<app-carousel
+[categoryName]=" selectedCategory"></app-carousel>
 
 <!-- <div class="selected-category">
     <p *ngIf="selectedCategory">Selected Category: {{ selectedCategory }}</p>
@@ -43,9 +45,9 @@
 
 
 
-<div class="cart-container">
+<div class="mat-elevation-z8" style="margin: 2%;">
     <div fxLayout="row wrap center" fxLayoutGap="35px" class="center">
-        <div fxFlex="25" *ngFor="let item of registerArr; let i = index" class="mat">
+        <div fxFlex="25" *ngFor="let item of registerArr | searchFilter: searchTerm  ; let i = index; " class="mat">
             <!-- Your item card template goes here -->
 
             <mat-card>
@@ -57,7 +59,7 @@
                     <p class="description"> {{item.description}} </p>
                     <p>
                         <span><strong>Price: </strong>{{item.price | currency:'INR' }}</span>
-                        <span style="margin-left:47%"><strong>Rating: </strong>{{item.rating.rate}}</span>
+                        <span style="margin-left:43%"><strong>Rating: </strong>{{item.rating.rate}}</span>
                     </p>
                     <mat-form-field>
                         <mat-label><strong>Quantity</strong></mat-label>
@@ -65,17 +67,20 @@
                             (input)="updateQuantity($event, i,item)">
 
                     </mat-form-field>
-                    <span style="margin-left:11%"><strong>Total: </strong> {{ item.price * getItemQuantity(item) |
+                    <span style="margin-left:8%"><strong>Total: </strong> {{ item.price * getItemQuantity(item) |
                         currency:'INR' }}</span>
                 </mat-card-content>
                 <!-- Add buttons for actions like remove or update quantity -->
                 <mat-card-actions>
-                    <button id="addToCartBtn" [hidden]="isInCart(item)"  mat-raised-button color="primary"
-                        (click)="addtocart($event, item, i)"> Add to Cart </button>
-                      <button disabled="true" [hidden]="!isInCart(item)" id="addedToCartBtn" mat-raised-button color="green">Added to Cart</button>
-                        <!-- [disabled]="getItemQuantity(item) === 0" -->
+                    <button *ngIf="!item.addedToCart" [disabled]="getItemQuantity(item) === 0" mat-raised-button color="primary"
+                        (click)="addtocart($event, item, i)"> {{ buttonText }} </button>
+                        <span *ngIf="item.addedToCart">Added to Cart</span>
+                    <!-- <button disabled="true" [hidden]="!isInCart(item)" id="addedToCartBtn" mat-raised-button color="green">Added to Cart</button> -->
+                    <!-- [disabled]="getItemQuantity(item) === 0" -->
 
-                        <button mat-raised-button color="secondary" routerLink="/dashboard/product/{{item.id}}" (click)="detailpopup()">Product Detail </button>
+                    <button mat-raised-button color="secondary" (click)="onClick(item)" >Product
+                        Detail </button>
+                        <!-- routerLink="/dashboard/product/{{item.id}}" -->
                 </mat-card-actions>
             </mat-card>
         </div>

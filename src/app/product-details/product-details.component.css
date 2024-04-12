@@ -1,0 +1,40 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.margin {
+  margin: 3%;
+}
+.product-detail {
+  display: flex;
+  align-items: center;
+  margin: 5%;
+}
+
+.product-image {
+  flex: 1;
+  padding: 20px;
+}
+
+.product-info {
+  flex: 2;
+  padding: 20px;
+}
+
+.product-info h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.product-info p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: justify;
+  margin-right: 3%;
+}
+
+.btn{
+    width:150px;
+    height:50px;
+    font-size: large;
+}

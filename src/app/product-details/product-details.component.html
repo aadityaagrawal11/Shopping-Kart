@@ -1,9 +1,64 @@
-<!-- product-detail.component.html -->
-<div *ngIf="product">
-    <h1>{{ product.name }}</h1>
-    <img [src]="product.image" alt="{{ product.name }}" />
-    <p>{{ product.description }}</p>
-    <p>Price: ${{ product.price }}</p>
-  </div>
-  <div *ngIf="!product">Product not found!</div>
+<p>
+  <mat-toolbar color="primary">
+
+      <span>Shopping kart</span>
+      <span class="example-spacer"></span>
+      <!-- <button class="m-5" mat-raised-button color="accent" (click)="addpopup()"> Add User (+) </button>
+    <button routerLink="/login" mat-raised-button color="warn" (click)="logout()"> Logout </button> -->
+    <button routerLink="/cart">
+      <mat-icon matTooltip="Cart"  [matBadge]="badgeCount"  matBadgeColor="warn" aria-hidden="false" >
+          <svg xmlns="http://www.w3.org/2000/svg" height="24"
+              viewBox="0 0 24 24" width="24">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path
+                  d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+          </svg></mat-icon></button>
+          <button class="margin" routerLink="#" mat-raised-button color="warn"> Logout </button>
+  </mat-toolbar>
+</p>
   
+<div *ngIf="isLoading">
+  <ngx-spinner type="ball-scale-multiple"><p> Please wait!! Data is loading !!</p></ngx-spinner>
+</div>
+
+<div *ngIf="!isLoading">
+  <div class="product-detail mat-elevation-z8" style="padding:2%; margin:2%;" >
+    <div class="product-image">
+      <img src={{product.image}} alt=" Not Available" width="80%" height="80%" />
+    </div>
+    <div class="product-info">
+      <h2>{{ product.title }}</h2> 
+      <!-- <strong>Rating: </strong> -->
+      <h1> <span style="background-color: green;color: white;">{{product.rating.rate}} <mat-icon>star</mat-icon></span>
+        <span style="margin-left:2% ;">{{product.rating.count}} Ratings & 1,880 Reviews</span>
+      <span> <img src="assets/assured.jpg" style="height: 40px; width: 50px;margin-left: 3%;"></span></h1>
+      <p>{{ product.description }}</p>
+      <h4><b>Available offers </b></h4>
+
+        <p> <img src="assets/tag.avif" style="height: 20px; width: 30px;"><strong>Bank Offer</strong> 5% Cashback on Flipkart Axis Bank Card <span style="color: blue;">T&C</span></p>
+        
+        <p> <img src="assets/tag.avif" style="height: 20px; width: 30px;"><strong>Bank Offer</strong> Get ₹25* instant discount for the 1st Flipkart Order using Flipkart UPI <span style="color: blue;">T&C</span></p>
+        
+        <p> <img src="assets/tag.avif" style="height: 20px; width: 30px;"><strong>Special Offer</strong> Get extra ₹5000 off (price inclusive of cashback/coupon) <span style="color: blue;">T&C</span></p>
+       <br/>
+      <h1><strong>Price: </strong> {{ product.price | currency:'INR' }} </h1>
+      <br/>
+
+      <mat-form-field>
+        <mat-label><strong>Quantity</strong></mat-label>
+        <input matInput type="number" min="1" max="10" [value]="getItemQuantity(product)"
+            (input)="updateQuantity($event,product)">
+
+    </mat-form-field>
+   <h1><strong>Total: </strong> {{ product.price * getItemQuantity(product) |
+        currency:'INR' }} </h1>
+      
+      <div>
+        <button class="btn" routerLink="/cart" [disabled]="getItemQuantity(product) === 0"  mat-raised-button color="primary"
+        (click)="addtocart($event, product)"> Add to cart  </button>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
