@@ -54,9 +54,13 @@
         currency:'INR' }} </h1>
       
       <div>
-        <button class="btn" routerLink="/cart" [disabled]="getItemQuantity(product) === 0"  mat-raised-button color="primary"
-        (click)="addtocart($event, product)"> Add to cart  </button>
+        <button *ngIf="product.addedToCart=== false" class="btn" routerLink="/cart" [disabled]="getItemQuantity(product) === 0"  mat-raised-button color="primary"
+        (click)="addtocart(product)"> Add to cart  </button>
 
+        <button *ngIf="product.addedToCart=== true" class="btn" routerLink="/cart" [disabled]="getItemQuantity(product) === 0"  mat-raised-button color="primary"
+        (click)="updatetocart(product)"> Update cart  </button>
+
+        <button routerLink="/dashboard" style="margin-left: 3%;" class="btn" mat-raised-button color="accent" >Cancel</button>
       </div>
       
     </div>

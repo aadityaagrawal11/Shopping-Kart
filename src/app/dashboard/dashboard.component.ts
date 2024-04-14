@@ -2,12 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ProductService } from '../Services/product.service';
 import { ToastrService } from 'ngx-toastr';
-import { NavigationEnd, Router } from '@angular/router';
-import { map, Observable } from 'rxjs';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { CategoryService } from '../category.service';
 import { ApiService } from '../Services/api.service';
-import { log } from 'console';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -16,31 +14,31 @@ import { log } from 'console';
 })
 export class DashboardComponent {
 
-  constructor(private http: HttpClient, private _service: ProductService,
-     private _api :ApiService,
-    private toastr: ToastrService, private router: Router,
-    private spinner: NgxSpinnerService, private categoryService: CategoryService) { }
+  constructor(private http: HttpClient,
+    private _service: ProductService,
+    private _api: ApiService,
+    private toastr: ToastrService,
+    private router: Router,
+    private categoryService: CategoryService) { }
 
- 
+
   badgevisibility = true;
   badgeCount = 0;
   registerArr: any[] = [];
   url: string = "https://fakestoreapi.com/products/";
   quantity: number = 1;
-  filteredProducts: any[] = [];
+
 
   ngOnInit(): void {
     this.getdata();
     this.badgetotal();
 
-    //this.registerArr = this._api.getdata();
-    //this._api.getdata();
   }
 
   getdata() {
     //this._api.getdata();
-      //this.http.get<any>(this.url).subscribe({
-        this._api.getApi().subscribe({
+    //this.http.get<any>(this.url).subscribe({
+    this._api.getApi().subscribe({
       next: (res) => {
         this.registerArr = res;
         // this.registerArr.forEach((ele:any)=>{
@@ -48,7 +46,8 @@ export class DashboardComponent {
         //   ele.amount = 0;
         //   if(!ele.addedToCart) ele.addedToCart = false;
         //})
-        console.log(this.registerArr);
+
+       // console.log(this.registerArr);
         this.router.navigate(['dashboard/category/all']);
       },
       error: console.log,
@@ -56,7 +55,6 @@ export class DashboardComponent {
     })
   }
   getItemQuantity(item: any): number {
-
     return item.quantity || 0; // Default quantity is 0 if not set
   }
 
@@ -88,59 +86,27 @@ export class DashboardComponent {
     })
   }
 
-alreadycart(){
-  this._service.getItem().subscribe((item) =>{
-    this._api.getApi().subscribe((res)=>{
-      if(res.title === item.title)res.addedToCart =true;
-      this.registerArr =res;
-    })
-    
-  })
-}
-
-  isInCart(item: any): Observable<boolean> {
-    return this._service.getItem().pipe(
-      map((items: any[]) => {
-        console.log('Irt', items)
-        return items.some((ele: any) => ele.title === item.title);
-      })
-    );
-  }
-  buttonText: string = "Add to Cart";
-  isdisable!: boolean;
-
-  addtocart(event: MouseEvent, item: any, index: any) {
+  addtocart(item: any) {
     item.addedToCart = true;
-    console.log(item);
-    this._api.updateApi(item.id,item).subscribe((res) => console.log('patch', res)
-    )
+    //console.log(item);
+    this._api.updateApi(item.id, item).subscribe((res) => console.log('patch', res))
     this._service.postItem(item).subscribe({
       next: (res) => {
         this.badgetotal();
-        this.toastr.success("Item Added Successfully !! ", 'Success Message!');
-        // this.buttonDisable(event, item);
-        this.isInCart(item).subscribe((varw) => {
-          if (varw) {
-
-            //this.buttonText ='Added to Cart';
-            // const button = event.target as HTMLButtonElement;
-            //  button.textContent = 'Added to Cart';button.disabled = true;
-
-          }
-        })
-
-
+        this.toastr.success("Item Added Successfully !! ", 'Success Message!',{
+          progressBar:true,
+          closeButton:true,
+        });
       }
+      
     })
 
-    // const button = event.target as HTMLButtonElement;
-    // button.textContent = 'Added to Cart';
-    // this.registerArr[index].quantity =0;
-    //button.disabled = true;
   }
-  addedToCart(){
+
+  addedToCart() {
     this.toastr.warning("Item already added in your cart !! ", 'Alert Message!');
   }
+
   searchTerm: any;
   Filterchange() {
     console.log(this.searchTerm);
@@ -149,23 +115,10 @@ alreadycart(){
       ele.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
     console.log(this.registerArr);
-    //setTimeout(()=>this.registerArr = this.filteredProducts,300)
-
     if (!this.searchTerm) this.getdata();
-
   }
 
-  onClick(item: any): void {
-    this.spinner.show(); // Show spinner when button is clicked
-    // Perform your navigation logic here, for example:
-    this.router.navigate(['/dashboard/product/', item.id]).then(() => {
-      this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          this.spinner.hide(); // Hide spinner when navigation ends
-        }
-      });
-    });
-  }
+
 
   // Category
 
@@ -179,8 +132,10 @@ alreadycart(){
       this.getdata();
     }
     else {
-      this.http.get<any>(this.url + 'category/' + category.toLowerCase()).subscribe({
-        next: (res) => {
+     // http://localhost:3000/productApi/?category=jewelery
+     // this.http.get<any>(this.url + 'category/' + category.toLowerCase()).subscribe({
+     this.http.get<any>(`http://localhost:3000/productApi/?category=${category.toLowerCase()}`).subscribe({   
+     next: (res) => {
           this.registerArr = res;
 
           console.log(res);

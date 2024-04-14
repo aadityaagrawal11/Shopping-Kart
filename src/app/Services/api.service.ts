@@ -9,10 +9,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  url: string = "https://fakestoreapi.com/products/";
+  apiUrl: string = "https://fakestoreapi.com/products/";
   productArr :any[] = [];
   getdata() {
-    this.http.get<any>(this.url).subscribe({
+    this.http.get<any>(this.apiUrl).subscribe({
       next: (res) => {
         this.productArr = res
 
@@ -33,6 +33,11 @@ export class ApiService {
   getApi(){
     return  this.http.get<any>("http://localhost:3000/productApi")
   }
+
+  getProductApi(id:any):Observable<any>{
+    return  this.http.get<any>(`http://localhost:3000/productApi/${id}`)
+  }
+
   updateApi(id:any, data:any):Observable<any>{
     return this.http.patch<any>( `http://localhost:3000/productApi/${id}`, data);
    }

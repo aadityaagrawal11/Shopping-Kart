@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { CategoryService } from '../category.service';
 import { Subscription } from 'rxjs';
+import { ApiService } from '../Services/api.service';
 
 @Component({
   selector: 'app-carousel',
@@ -10,17 +11,18 @@ import { Subscription } from 'rxjs';
 })  // private _service: ProductService,
 export class CarouselComponent {
   selectedCategory: string = 'jewelery';
-  subscription: Subscription;
-  mensClothingDetails: any[] | undefined;
-  constructor(private http: HttpClient, private categoryService: CategoryService) {
-    this.subscription = this.categoryService.selectedCategory$.subscribe(category => {
+ 
+
+  constructor(private http: HttpClient, private _api: ApiService,
+    private categoryService: CategoryService) {
+    this.categoryService.selectedCategory$.subscribe(category => {
       this.selectedCategory = category.toLowerCase();
-     // console.log(this.selectedCategory);
-      if(this.selectedCategory == 'jewelery') this.images = this.categoryImages.jewelery;
-      else if(this.selectedCategory == 'electronics') this.images = this.categoryImages.electronics;
-      else if(this.selectedCategory == `men's clothing`) this.images = this.categoryImages["men's clothing"];
-      else if(this.selectedCategory == `women's clothing`) this.images = this.categoryImages["women's clothing"];
-      else{ this.images = this.categoryImages.electronics;}
+      // console.log(this.selectedCategory);
+      if (this.selectedCategory == 'jewelery') this.images = this.categoryImages.jewelery;
+      else if (this.selectedCategory == 'electronics') this.images = this.categoryImages.electronics;
+      else if (this.selectedCategory == `men's clothing`) this.images = this.categoryImages["men's clothing"];
+      else if (this.selectedCategory == `women's clothing`) this.images = this.categoryImages["women's clothing"];
+      else { this.images = this.categoryImages.electronics; }
     });
   }
   @Input() categoryName: any;
@@ -31,13 +33,11 @@ export class CarouselComponent {
 
   ngOnInit(): void {
     this.getdata();
-    // console.log('images', this.categoryImages.jewelery);
-    // console.log('cat', this.selectedCategory);
-
-  }
+   }
 
   getdata() {
-    this.http.get<any>(this.url).subscribe({
+    //this.http.get<any>(this.url).subscribe({
+    this._api.getApi().subscribe({
       next: (res) => {
         this.products = res;
         this.categoryImages = this.products.reduce((acc, item) => {

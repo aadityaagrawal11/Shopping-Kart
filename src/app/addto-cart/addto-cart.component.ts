@@ -115,7 +115,10 @@ export class AddtoCartComponent {
         this.getdata();
         // console.log(res);
       });
-    this.toastr.success(" Cart Empted successfully !! ", 'Delete Message!');
+    this.toastr.error(" Cart Empted successfully !! ", 'Delete Message!',{
+      progressBar:true,
+      closeButton:true,
+    });
 
   }
 }

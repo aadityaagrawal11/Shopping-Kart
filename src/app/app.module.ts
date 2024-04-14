@@ -49,7 +49,10 @@ import { SearchFilterPipe } from './search-filter.pipe';
   imports: [
     BrowserModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      //positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
     NgbCarouselModule,
     AppRoutingModule,
     HttpClientModule,
