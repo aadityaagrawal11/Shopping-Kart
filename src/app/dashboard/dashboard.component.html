@@ -74,10 +74,11 @@
                 <mat-card-actions>
                     <button *ngIf="!item.addedToCart" [disabled]="getItemQuantity(item) === 0" mat-raised-button color="primary"
                         (click)="addtocart($event, item, i)"> {{ buttonText }} </button>
-                        <span *ngIf="item.addedToCart">Added to Cart</span>
-                    <!-- <button disabled="true" [hidden]="!isInCart(item)" id="addedToCartBtn" mat-raised-button color="green">Added to Cart</button> -->
-                    <!-- [disabled]="getItemQuantity(item) === 0" -->
-
+                        <b><button mat-stroked-button (click)="addedToCart()" style="background-color: rgb(218, 241, 194);width:99%;padding: 2%;" *ngIf="item.addedToCart"><img src="assets/tick.png" height="20px" width="20px" >Added to Cart</button>
+                        </b>
+                        
+                    
+                     &nbsp;
                     <button mat-raised-button color="secondary" (click)="onClick(item)" >Product
                         Detail </button>
                         <!-- routerLink="/dashboard/product/{{item.id}}" -->

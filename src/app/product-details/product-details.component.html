@@ -22,9 +22,9 @@
 </div>
 
 <div *ngIf="!isLoading">
-  <div class="product-detail mat-elevation-z8" style="padding:2%; margin:2%;" >
-    <div class="product-image">
-      <img src={{product.image}} alt=" Not Available" width="80%" height="80%" />
+  <div class="product-detail  mat-elevation-z8" style="padding:2%; margin:2%;" >
+    <div class="product-image product">
+      <img class="thumbnail "  src={{product.image}} alt=" Not Available" width="80%" height="80%" />
     </div>
     <div class="product-info">
       <h2>{{ product.title }}</h2> 

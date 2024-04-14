@@ -20,7 +20,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSort } from '@angular/material/sort';
 import { MatBadgeModule } from '@angular/material/badge'
-import { MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutServerModule } from '@angular/flex-layout/server';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -28,8 +28,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AddtoCartComponent } from './addto-cart/addto-cart.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ToastrModule } from 'ngx-toastr';
-import {MatListModule} from '@angular/material/list';
-import {MatGridListModule} from '@angular/material/grid-list'
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list'
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CarouselComponent } from './carousel/carousel.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
@@ -50,7 +50,7 @@ import { SearchFilterPipe } from './search-filter.pipe';
     BrowserModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
-    NgbCarouselModule ,
+    NgbCarouselModule,
     AppRoutingModule,
     HttpClientModule,
     FlexLayoutModule,

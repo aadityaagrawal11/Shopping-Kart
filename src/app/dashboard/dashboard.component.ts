@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 import { ProductService } from '../Services/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { NavigationEnd, Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { ProductDetailsComponent } from '../product-details/product-details.component';
-import { async, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { CategoryService } from '../category.service';
+import { ApiService } from '../Services/api.service';
+import { log } from 'console';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,37 +17,38 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class DashboardComponent {
 
   constructor(private http: HttpClient, private _service: ProductService,
-    private toastr: ToastrService, private router: Router,  private spinner: NgxSpinnerService,private productDetailDialog: MatDialog,) { }
-  title = 'Shopping';
+     private _api :ApiService,
+    private toastr: ToastrService, private router: Router,
+    private spinner: NgxSpinnerService, private categoryService: CategoryService) { }
+
+ 
   badgevisibility = true;
   badgeCount = 0;
   registerArr: any[] = [];
   url: string = "https://fakestoreapi.com/products/";
   quantity: number = 1;
   filteredProducts: any[] = [];
+
   ngOnInit(): void {
     this.getdata();
     this.badgetotal();
-  }
- // {{item.id}}
-  onClick(item:any): void {
-    this.spinner.show(); // Show spinner when button is clicked
-    // Perform your navigation logic here, for example:
-    this.router.navigate(['/dashboard/product/', item.id ]).then(() => {
-      this.router.events.subscribe((event) => {
-        if (event instanceof NavigationEnd) {
-          this.spinner.hide(); // Hide spinner when navigation ends
-        }
-      });
-    });
+
+    //this.registerArr = this._api.getdata();
+    //this._api.getdata();
   }
 
   getdata() {
-    this.http.get<any>(this.url).subscribe({
+    //this._api.getdata();
+      //this.http.get<any>(this.url).subscribe({
+        this._api.getApi().subscribe({
       next: (res) => {
         this.registerArr = res;
-
-        //console.log(this.registerArr);
+        // this.registerArr.forEach((ele:any)=>{
+        //   ele.quantity = 0;
+        //   ele.amount = 0;
+        //   if(!ele.addedToCart) ele.addedToCart = false;
+        //})
+        console.log(this.registerArr);
         this.router.navigate(['dashboard/category/all']);
       },
       error: console.log,
@@ -65,7 +67,7 @@ export class DashboardComponent {
     this.registerArr[index].quantity = value;
     const amount = item.price * this.getItemQuantity(item)
     this.registerArr[index].amount = amount;
-    this.registerArr[index].addedToCart = false;
+    //this.registerArr[index].addedToCart = false;
     this.registerArr[index].id = this.registerArr[index].id.toString();
   }
 
@@ -76,6 +78,7 @@ export class DashboardComponent {
     }
     return total;
   }
+
   badgetotal() {
     this._service.getItem().subscribe({
       next: (res) => {
@@ -85,65 +88,93 @@ export class DashboardComponent {
     })
   }
 
+alreadycart(){
+  this._service.getItem().subscribe((item) =>{
+    this._api.getApi().subscribe((res)=>{
+      if(res.title === item.title)res.addedToCart =true;
+      this.registerArr =res;
+    })
+    
+  })
+}
 
   isInCart(item: any): Observable<boolean> {
     return this._service.getItem().pipe(
       map((items: any[]) => {
-        console.log('Irt',items)
+        console.log('Irt', items)
         return items.some((ele: any) => ele.title === item.title);
       })
     );
   }
-   buttonText:string = "Add to Cart";
+  buttonText: string = "Add to Cart";
   isdisable!: boolean;
 
   addtocart(event: MouseEvent, item: any, index: any) {
     item.addedToCart = true;
-    //console.log(item);
+    console.log(item);
+    this._api.updateApi(item.id,item).subscribe((res) => console.log('patch', res)
+    )
     this._service.postItem(item).subscribe({
       next: (res) => {
         this.badgetotal();
         this.toastr.success("Item Added Successfully !! ", 'Success Message!');
         // this.buttonDisable(event, item);
-        this.isInCart( item).subscribe((varw)=>{
-          if(varw){
-           
-           //this.buttonText ='Added to Cart';
+        this.isInCart(item).subscribe((varw) => {
+          if (varw) {
+
+            //this.buttonText ='Added to Cart';
             // const button = event.target as HTMLButtonElement;
             //  button.textContent = 'Added to Cart';button.disabled = true;
 
           }
         })
-       
-        
+
+
       }
     })
- 
+
     // const button = event.target as HTMLButtonElement;
     // button.textContent = 'Added to Cart';
     // this.registerArr[index].quantity =0;
     //button.disabled = true;
   }
-  searchTerm:any;
+  addedToCart(){
+    this.toastr.warning("Item already added in your cart !! ", 'Alert Message!');
+  }
+  searchTerm: any;
   Filterchange() {
     console.log(this.searchTerm);
-    
-    this.registerArr = this.registerArr.filter((ele) =>
-    ele.title.toLowerCase().includes(this.searchTerm.toLowerCase()) 
+
+    this.registerArr = this.registerArr.filter((ele: { title: string; }) =>
+      ele.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
     console.log(this.registerArr);
     //setTimeout(()=>this.registerArr = this.filteredProducts,300)
-    
-   if(!this.searchTerm)this.getdata();
-   
+
+    if (!this.searchTerm) this.getdata();
+
   }
 
+  onClick(item: any): void {
+    this.spinner.show(); // Show spinner when button is clicked
+    // Perform your navigation logic here, for example:
+    this.router.navigate(['/dashboard/product/', item.id]).then(() => {
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.spinner.hide(); // Hide spinner when navigation ends
+        }
+      });
+    });
+  }
+
+  // Category
 
   categories: string[] = ["All Products", "Electronics", "Jewelery", "Men's clothing", "Women's clothing"];
   selectedCategory: string | undefined;
 
   selectCategory(category: string): void {
     this.selectedCategory = category;
+    this.categoryService.setSelectedCategory(category);
     if (category === 'All Products') {
       this.getdata();
     }
@@ -161,24 +192,6 @@ export class DashboardComponent {
     const formattedCategoryName = category.replace(/\s+/g, '-');
     this.router.navigate(['dashboard/category/', formattedCategoryName]);
   }
-  
-  detailpopup() {
-    // localStorage.setItem('editdialogOpen', 'true');
-    // localStorage.setItem('editdialogData', JSON.stringify(userData));
 
 
-    const detailref = this.productDetailDialog.open(ProductDetailsComponent, {
-      width: '25%',
-    });
-    detailref.afterClosed().subscribe({
-      next: (val) => {
-        if (val) this.getdata();
-
-        // localStorage.setItem('editdialogOpen', 'false');
-        // localStorage.removeItem('editdialogData')
-      }
-
-
-    })
-  }
 }

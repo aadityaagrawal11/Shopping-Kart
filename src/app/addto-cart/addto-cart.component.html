@@ -16,14 +16,16 @@
             <button class="margin" routerLink="#" mat-raised-button color="warn"> Logout </button>
     </mat-toolbar>
 </p>
+
+
 <div *ngIf="cartItems.length > 0; else emptyCart">
 <mat-card>
     <mat-card-header></mat-card-header>
     <mat-card-content>
 
-        <table mat-table [dataSource]="cartItems" class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
             <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <th mat-sort-header mat-header-cell *matHeaderCellDef>Name</th>
                 <td style="width:20%" mat-cell *matCellDef="let item">{{ item.title }}</td>
             </ng-container>
 

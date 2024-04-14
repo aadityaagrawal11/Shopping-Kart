@@ -38,3 +38,11 @@
     height:50px;
     font-size: large;
 }
+
+.thumbnail {
+  transition: transform 0.3s ease;
+}
+
+.product:hover .thumbnail {
+  transform: scale(1.2); /* Adjust the scale factor as needed */
+}
