@@ -1,6 +1,11 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+ .search-bar{
+  margin-left: 15%;
+ 
+  cursor: pointer;
+} 
 mat-toolbar{
   position: fixed;
   z-index: 1000;
@@ -28,7 +33,13 @@ mat-card {
 button {
   margin: 2%;
 }
-
+.btn{
+  width:225px;
+  height:50px;
+  margin:0% 3%;
+  /* font-size: large; */
+  /* margin-left: 5px; */
+}
 .image {
   display: block;
   margin-left: auto;

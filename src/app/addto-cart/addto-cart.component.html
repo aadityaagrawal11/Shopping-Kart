@@ -18,7 +18,7 @@
 </p>
 
 
-<div *ngIf="cartItems.length > 0; else emptyCart">
+<div *ngIf="cartItems.length > 0; else emptyCart" style="margin-top: 1.5%;">
 <mat-card>
     <mat-card-header></mat-card-header>
     <mat-card-content>
@@ -62,7 +62,7 @@
                 </ng-container>
             
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr class="mat-header-row" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </mat-card-content>
@@ -70,7 +70,7 @@
     <mat-card-actions style="padding:2%; margin:3%" class="mat-elevation-z8">
         <button class="margin" mat-raised-button color="warn" (click)="clearAllpopup()">Empty Cart</button>
         <button class="margin" routerLink="/dashboard"  mat-raised-button color="accent"> Shop more</button>
-        <button class="margin" mat-raised-button color="primary" >Checkout</button>
+        <button class="margin" mat-raised-button routerLink="/checkout"  color="primary" >Checkout</button>
         <h4 style="margin-left:45% ;"> <strong>Total Cost </strong> {{calculateTotal() | currency:'INR'}}</h4>
     </mat-card-actions>
 

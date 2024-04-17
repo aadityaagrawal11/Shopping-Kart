@@ -21,14 +21,14 @@
   <ngx-spinner type="ball-scale-multiple"><p> Please wait!! Data is loading !!</p></ngx-spinner>
 </div>
 
-<div *ngIf="!isLoading">
+<div *ngIf="!isLoading" style="margin-top: 6%;">
   <div class="product-detail  mat-elevation-z8" style="padding:2%; margin:2%;" >
     <div class="product-image product">
       <img class="thumbnail "  src={{product.image}} alt=" Not Available" width="80%" height="80%" />
     </div>
     <div class="product-info">
       <h2>{{ product.title }}</h2> 
-      <!-- <strong>Rating: </strong> -->
+      
       <h1> <span style="background-color: green;color: white;">{{product.rating.rate}} <mat-icon>star</mat-icon></span>
         <span style="margin-left:2% ;">{{product.rating.count}} Ratings & 1,880 Reviews</span>
       <span> <img src="assets/assured.jpg" style="height: 40px; width: 50px;margin-left: 3%;"></span></h1>

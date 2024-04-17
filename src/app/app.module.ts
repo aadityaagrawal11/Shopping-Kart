@@ -21,6 +21,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSort } from '@angular/material/sort';
 import { MatBadgeModule } from '@angular/material/badge'
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { provideNativeDateAdapter } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutServerModule } from '@angular/flex-layout/server';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -29,12 +32,20 @@ import { AddtoCartComponent } from './addto-cart/addto-cart.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ToastrModule } from 'ngx-toastr';
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs'
 import { MatGridListModule } from '@angular/material/grid-list'
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CarouselComponent } from './carousel/carousel.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { SearchFilterPipe } from './search-filter.pipe';
+import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { ProfileComponent } from './profile/profile.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+import {MatChipsModule} from '@angular/material/chips';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +55,12 @@ import { SearchFilterPipe } from './search-filter.pipe';
     CarouselComponent,
     ProductDetailsComponent,
     SearchFilterPipe,
+    FooterComponent,
+    LoginComponent,
+    RegisterComponent,
+    CheckoutComponent,
+    ProfileComponent,
+    OrderDetailsComponent,
 
   ],
   imports: [
@@ -64,9 +81,13 @@ import { SearchFilterPipe } from './search-filter.pipe';
     MatInputModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
+    MatTabsModule,
     MatDialogModule,
+    MatChipsModule,
+    MatDatepickerModule,
     MatButtonModule,
     MatTableModule,
+    MatExpansionModule,
     MatCheckboxModule,
     MatToolbarModule,
     MatIconModule,
@@ -82,7 +103,8 @@ import { SearchFilterPipe } from './search-filter.pipe';
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()),
+    provideNativeDateAdapter()
   ],
   bootstrap: [AppComponent]
 })

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ProductService } from '../Services/product.service';
 import { ToastrService } from 'ngx-toastr';
-import { CategoryService } from '../category.service';
+import { CategoryService } from '../Services/category.service';
 import { ApiService } from '../Services/api.service';
 import { Router } from '@angular/router';
 
@@ -41,19 +41,12 @@ export class DashboardComponent {
     this._api.getApi().subscribe({
       next: (res) => {
         this.registerArr = res;
-        // this.registerArr.forEach((ele:any)=>{
-        //   ele.quantity = 0;
-        //   ele.amount = 0;
-        //   if(!ele.addedToCart) ele.addedToCart = false;
-        //})
-
-       // console.log(this.registerArr);
         this.router.navigate(['dashboard/category/all']);
       },
       error: console.log,
-
     })
   }
+  
   getItemQuantity(item: any): number {
     return item.quantity || 0; // Default quantity is 0 if not set
   }
@@ -104,7 +97,10 @@ export class DashboardComponent {
   }
 
   addedToCart() {
-    this.toastr.warning("Item already added in your cart !! ", 'Alert Message!');
+    this.toastr.warning("Item already added in your cart !! ", 'Alert Message!',{
+      progressBar:true,
+      closeButton:true,
+    });
   }
 
   searchTerm: any;

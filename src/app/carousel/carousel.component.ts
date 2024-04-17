@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
-import { CategoryService } from '../category.service';
+import { CategoryService } from '../Services/category.service';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../Services/api.service';
 

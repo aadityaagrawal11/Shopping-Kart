@@ -1,36 +1,5 @@
 {
-  "addToCart": [
-    {
-      "id": "8",
-      "title": "Pierced Owl Rose Gold Plated Stainless Steel Double",
-      "price": 10.99,
-      "description": "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
-      "category": "jewelery",
-      "image": "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
-      "rating": {
-        "rate": 1.9,
-        "count": 100
-      },
-      "quantity": "3",
-      "amount": 32.97,
-      "addedToCart": true
-    },
-    {
-      "id": "6",
-      "title": "Solid Gold Petite Micropave ",
-      "price": 168,
-      "description": "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-      "category": "jewelery",
-      "image": "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-      "rating": {
-        "rate": 3.9,
-        "count": 70
-      },
-      "quantity": "4",
-      "amount": 672,
-      "addedToCart": true
-    }
-  ],
+  "addToCart": [],
   "productApi": [
     {
       "id": "1",
@@ -118,9 +87,9 @@
         "rate": 3.9,
         "count": 70
       },
-      "quantity": "4",
-      "amount": 672,
-      "addedToCart": true
+      "quantity": 0,
+      "amount": 0,
+      "addedToCart": false
     },
     {
       "id": "7",
@@ -148,9 +117,9 @@
         "rate": 1.9,
         "count": 100
       },
-      "quantity": "3",
-      "amount": 32.97,
-      "addedToCart": true
+      "quantity": 0,
+      "amount": 0,
+      "addedToCart": false
     },
     {
       "id": "9",
@@ -331,6 +300,182 @@
       "quantity": 0,
       "amount": 0,
       "addedToCart": false
+    }
+  ],
+  "user": [
+    {
+      "id": "421a",
+      "firstname": "rekha",
+      "lastname": "devi",
+      "email": "rekha@gmail.com",
+      "password": "123",
+      "confirmPassword": "123",
+      "address": []
+    },
+    {
+      "id": "18b6",
+      "firstname": "alka",
+      "lastname": "agrawal",
+      "email": "alka@gmail.com",
+      "password": "121`",
+      "confirmPassword": "1231",
+      "address": []
+    },
+    {
+      "id": "b0fa",
+      "firstname": "Ankit",
+      "lastname": "Ojha",
+      "email": "ankit@gmail.com",
+      "password": "121",
+      "confirmPassword": "121",
+      "address": [
+        {
+          "fullName": "sua",
+          "addressLine1": "suu",
+          "phoneNumber": "u",
+          "city": "88",
+          "state": "8",
+          "pinCode": "889999",
+          "orderDate": "2024-04-17T10:22:14.657Z"
+        }
+      ]
+    },
+    {
+      "id": "d371",
+      "firstname": "rishu",
+      "lastname": "singh",
+      "email": "rishu@gmail.com",
+      "password": "121",
+      "confirmPassword": "121",
+      "address": [
+        {
+          "fullName": "RIshu Pratap Singh",
+          "addressLine1": "Main Bazar ",
+          "phoneNumber": "9098909898",
+          "city": "Ballia",
+          "state": "Uttar Pradesh",
+          "pinCode": "277001",
+          "orderDate": "2024-04-17T10:33:44.854Z"
+        },
+        {
+          "fullName": "kajol",
+          "addressLine1": "qwerty",
+          "phoneNumber": "9987897990",
+          "city": "Lucknow",
+          "state": "Uttar Pradesh",
+          "pinCode": "226029",
+          "orderDate": "2024-04-17T10:37:19.858Z"
+        },
+        {
+          "fullName": "Rathore",
+          "addressLine1": "eS Sports Complex",
+          "phoneNumber": 123454554,
+          "city": "Srinagar",
+          "state": "Jammu & Kashmir",
+          "pinCode": 190001,
+          "orderDate": "2024-04-17T11:36:08.614Z"
+        },
+        {
+          "fullName": "Sudha Singh",
+          "addressLine1": "Near Over Bridge\nBallia",
+          "phoneNumber": 9087898767,
+          "city": "Ballia",
+          "state": "Uttar Pradesh",
+          "pinCode": 277001,
+          "orderDate": "2024-04-17T15:23:07.786Z"
+        },
+        {
+          "fullName": "shyam Rathore",
+          "addressLine1": "BAAAAA",
+          "phoneNumber": 989900989,
+          "city": "Durg",
+          "state": "Chattisgarh",
+          "pinCode": 490001,
+          "orderDate": "2024-04-17T15:25:12.631Z"
+        }
+      ]
+    }
+  ],
+  "order": [
+    {
+      "id": "9e15",
+      "userId": "d371",
+      "email": "rishu@gmail.com",
+      "order": [
+        {
+          "id": "2",
+          "title": "Mens Casual Premium Slim Fit T-Shirts ",
+          "price": 22.3,
+          "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+          "rating": {
+            "rate": 4.1,
+            "count": 259
+          },
+          "quantity": "2",
+          "amount": 44.6,
+          "addedToCart": true
+        },
+        {
+          "id": "3",
+          "title": "Mens Cotton Jacket",
+          "price": 55.99,
+          "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+          "rating": {
+            "rate": 4.7,
+            "count": 500
+          },
+          "quantity": "3",
+          "amount": 167.97,
+          "addedToCart": true
+        }
+      ],
+      "address": {
+        "fullName": "Rathore",
+        "addressLine1": "eS Sports Complex",
+        "phoneNumber": 123454554,
+        "city": "Srinagar",
+        "state": "Jammu & Kashmir",
+        "pinCode": 190001,
+        "orderDate": "2024-04-17T11:36:08.614Z"
+      },
+      "amount": 212.57
+    },
+    {
+      "id": "c139",
+      "userId": "d371",
+      "email": "rishu@gmail.com",
+      "order": [
+        {
+          "id": "2",
+          "title": "Mens Casual Premium Slim Fit T-Shirts ",
+          "price": 22.3,
+          "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
+          "rating": {
+            "rate": 4.1,
+            "count": 259
+          },
+          "quantity": "1",
+          "amount": 22.3,
+          "addedToCart": true
+        }
+      ],
+      "address": {
+        "fullName": "Sudha Singh",
+        "addressLine1": "Near Over Bridge\nBallia",
+        "phoneNumber": 9087898767,
+        "city": "Ballia",
+        "state": "Uttar Pradesh",
+        "pinCode": 277001,
+        "orderDate": "2024-04-17T15:23:07.786Z"
+      },
+      "paymentType": "Net Banking",
+      "amount": 22.3
     }
   ]
 }

@@ -1,0 +1,80 @@
+ <p>
+    <mat-toolbar color="primary">
+
+        <span>Shopping kart</span>
+        <span class="search-bar">
+       
+        </span>
+      
+        <span class="example-spacer"></span>
+        <button routerLink="/profile" mat-raised-button color="secondary">  <mat-icon>account_circle</mat-icon>My Profile </button>
+        <button routerLink="/cart">
+            <!-- [matBadge]="badgeCount" -->
+            <mat-icon matTooltip="Cart"    matBadgeColor="warn" aria-hidden="false" >
+                <svg xmlns="http://www.w3.org/2000/svg" height="24"
+                    viewBox="0 0 24 24" width="24">
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <path
+                        d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+                </svg></mat-icon></button>
+        <button routerLink="/login" mat-raised-button color="warn"> Logout </button>
+
+    </mat-toolbar>
+</p> 
+
+<div class="profile-container">
+    <h2>My Profile</h2>
+    
+    <!-- User Information -->
+    <div class="user-info">
+      <h2>Personal Information</h2>
+      <p><strong>Name:</strong> {{currentUserData.firstname }} {{currentUserData.lastname }}</p>
+      <p><strong>Email:</strong> {{ currentUserData.email }}</p>
+      <div><strong>Address:</strong></div>
+      <div style="margin-left: 8%;">{{ userAddress.fullName }} <br/>
+        {{ userAddress.addressLine1 }} <br/>
+        {{ userAddress.city }}, {{ userAddress.state }} - {{ userAddress.pinCode }} <br />
+        Mob - {{ userAddress.phoneNumber}}
+      </div> 
+      <!-- Add other user information fields here -->
+    </div>
+    
+    <!-- Past Orders -->
+    <div class="past-orders">
+      <h2>Past Orders</h2>
+      <ul>
+        <li *ngFor="let order of pastOrders" style="margin-bottom: 4%;">
+          <span><strong>Item ID:</strong> {{ order.id }}</span>
+          <span><strong>Date:</strong> {{ userAddress.orderDate | date }}</span>
+          <span><strong>Item</strong> {{ order.title }}</span>
+          <!-- Add other order details here -->
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+
+
+
+
+<!-- *ngFor="let item of profiles" 
+ <div class="product-details-container" >
+    <div class="product-image">
+         <img src="{{item.image}}" alt="Product Image"> 
+        Hello, {{profiles.firstname}}
+    </div>
+     <div class="product-details">
+         <h2>{{item.title}}</h2> 
+        <h1> <span style="background-color: green;color: white;">{{item.rating.rate}}
+                <mat-icon>star</mat-icon></span>
+            <span style="margin-left:2% ;">{{item.rating.count}} Ratings & 1,880 Reviews</span>
+            <span> <img src="assets/assured.jpg" style="height: 40px; width: 50px;margin-left: 3%;"></span>
+        </h1>
+
+        <h3 style="text-align: justify;">{{item.description}} </h3>
+        <h3 style="display:flex;"><strong>Price: </strong> {{ item.price | currency:'INR' }} </h3>
+        <h3><strong>Quantity: </strong> {{ item.quantity }} </h3>
+        <h2><strong>Amount: </strong> {{ item.amount | currency:'INR' }} </h2>
+
+    </div> 
+</div>  -->

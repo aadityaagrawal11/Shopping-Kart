@@ -1,0 +1,30 @@
+.container{
+    border: 3px solid;
+    border-radius: 3%;
+    /* margin:auto; */
+    background: rgba(121, 120, 120, 0.301);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height:60%;
+    width:50%; */
+    height: auto;
+    width: max-content;
+} 
+input{
+    width:500px;
+    margin:2px;
+}
+.form-group {
+    margin-top: 11px;
+}
+mat-form-field{
+    width:100%
+}
+.btn{
+    margin: 2%;
+    margin-left: 6%;
+  
+    
+  }
+ 
