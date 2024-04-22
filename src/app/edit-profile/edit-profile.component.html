@@ -1,0 +1,69 @@
+<div class="header">
+    <h1 style="font-weight: bold;" mat-dialog-title>Change Your {{msg}} </h1>
+    <span class="close-button topright">
+        <button mat-icon-button mat-dialog-close>
+            <mat-icon fontIcon="close-button"></mat-icon>
+        </button>
+    </span>
+</div>
+
+<div class='edit-container'>
+    <p>If you want to change the {{msg}} associated with your  account, you may do so below. 
+        Be sure to click the Save Changes button when you are done.</p>
+        <h3> New {{msg}}</h3>
+
+        <span *ngIf="msg == 'Name'"> 
+            <mat-form-field >
+            <mat-label>First Name</mat-label>
+            <input matInput  placeholder="Enter First Name" [(ngModel)]=" FirstName">
+            <!-- <mat-error *ngIf=" editForm.get('city')?.hasError('required')">City is
+                required</mat-error> -->
+                
+        </mat-form-field>
+
+        <mat-form-field >
+            <mat-label>Last Name</mat-label>
+            <input matInput  placeholder="Enter Last Name" [(ngModel)]=" LastName">
+            <!-- <mat-error *ngIf=" editForm.get('city')?.hasError('required')">City is
+                required</mat-error> -->
+        </mat-form-field>
+        
+    </span>
+
+    <span *ngIf="msg == 'Email'">
+        <mat-form-field >
+            <mat-label>Email Id</mat-label>
+            <input matInput  placeholder="Enter Mail ID" [(ngModel)]=" Email">
+            <!-- <mat-error *ngIf=" editForm.get('city')?.hasError('required')">City is
+                required</mat-error> -->
+                
+        </mat-form-field>
+    </span>
+
+    <span *ngIf="msg == 'Password'">
+        <mat-form-field >
+            <mat-label>Password</mat-label>
+            <input matInput  placeholder="Enter Password" [(ngModel)]=" Password">
+            <!-- <mat-error *ngIf=" editForm.get('city')?.hasError('required')">City is
+                required</mat-error> -->
+                
+        </mat-form-field>
+    </span>
+
+    <span *ngIf="msg == 'MobileNumber'">
+        <mat-form-field >
+            <mat-label>Mobile Number</mat-label>
+            <input matInput  placeholder="Enter Phone Number" [(ngModel)]=" MobileNumber">
+            <!-- <mat-error *ngIf=" editForm.get('city')?.hasError('required')">City is
+                required</mat-error> -->
+                
+        </mat-form-field>
+    </span>
+</div>
+
+<div mat-dialog-actions class="btn">
+    <button type="submit" mat-raised-button class="btn-inside"
+        (click)="editSubmission()" color="accent">Save Changes</button>
+    <button type="button" mat-raised-button [mat-dialog-close]="{close:false}" class="btn-inside"
+        color="warn">Cancel</button>
+</div>

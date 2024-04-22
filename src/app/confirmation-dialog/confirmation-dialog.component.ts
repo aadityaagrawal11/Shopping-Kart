@@ -13,8 +13,18 @@ export class ConfirmationDialogComponent {
     ref.disableClose = true;
     console.log(this.data.hide)
   }
-  hide: any = this.data.hide;
-  title: any = this.data.data.title;
+  ngOnInit(){
+   this.hide = this.data.hide;
+   this.title = this.data.data.title;
+
+    if(this.title ==undefined) {
+      this.title = this.data.data.fullName;     
+    }
+  }
+  
+  hide: any; 
+  title: any; 
+
   confirm() {
     this.ref.close(true);
   }

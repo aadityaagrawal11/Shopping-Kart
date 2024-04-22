@@ -1,80 +1,116 @@
- <p>
-    <mat-toolbar color="primary">
+<p>
+  <mat-toolbar color="primary">
 
-        <span>Shopping kart</span>
-        <span class="search-bar">
-       
-        </span>
-      
-        <span class="example-spacer"></span>
-        <button routerLink="/profile" mat-raised-button color="secondary">  <mat-icon>account_circle</mat-icon>My Profile </button>
-        <button routerLink="/cart">
-            <!-- [matBadge]="badgeCount" -->
-            <mat-icon matTooltip="Cart"    matBadgeColor="warn" aria-hidden="false" >
-                <svg xmlns="http://www.w3.org/2000/svg" height="24"
-                    viewBox="0 0 24 24" width="24">
-                    <path d="M0 0h24v24H0z" fill="none" />
-                    <path
-                        d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
-                </svg></mat-icon></button>
-        <button routerLink="/login" mat-raised-button color="warn"> Logout </button>
+    <span>Shopping kart</span>
+    <span class="search-bar">
 
-    </mat-toolbar>
-</p> 
+    </span>
 
+    <span class="example-spacer"></span>
+    <button routerLink="/profile" mat-raised-button color="secondary"> <mat-icon>account_circle</mat-icon>My Profile
+    </button>
+    <button routerLink="/cart">
+      <!-- [matBadge]="badgeCount" -->
+      <mat-icon matTooltip="Cart" matBadgeColor="warn" aria-hidden="false">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+        </svg></mat-icon></button>
+    <button routerLink="/login" mat-raised-button color="warn"> Logout </button>
+
+  </mat-toolbar>
+</p>
+
+<div *ngIf="isLoading">
+  <ngx-spinner type="ball-scale-multiple"><p> Please wait!! Data is loading !!</p></ngx-spinner>
+</div>
+
+<div *ngIf="!isLoading" class="mat-elevation-z8" style="margin: 3%;">
 <div class="profile-container">
-    <h2>My Profile</h2>
-    
-    <!-- User Information -->
-    <div class="user-info">
-      <h2>Personal Information</h2>
-      <p><strong>Name:</strong> {{currentUserData.firstname }} {{currentUserData.lastname }}</p>
-      <p><strong>Email:</strong> {{ currentUserData.email }}</p>
-      <div><strong>Address:</strong></div>
-      <div style="margin-left: 8%;">{{ userAddress.fullName }} <br/>
-        {{ userAddress.addressLine1 }} <br/>
-        {{ userAddress.city }}, {{ userAddress.state }} - {{ userAddress.pinCode }} <br />
-        Mob - {{ userAddress.phoneNumber}}
-      </div> 
-      <!-- Add other user information fields here -->
+  <h1 style="text-align: center; color: rgb(170, 202, 238);font-size: xx-large;" >My Profile</h1>
+
+  <!-- User Information -->
+  <div class="user-info">
+    <h2 style="font-size: x-large;">Personal Information</h2>
+
+    <div class="user-item">
+    <div class="user-item-header"><strong>Name</strong>
+     <mat-icon matTooltip="Edit" (click)="profileEdit('Name')">edit</mat-icon>
     </div>
-    
-    <!-- Past Orders -->
-    <div class="past-orders">
-      <h2>Past Orders</h2>
-      <ul>
-        <li *ngFor="let order of pastOrders" style="margin-bottom: 4%;">
-          <span><strong>Item ID:</strong> {{ order.id }}</span>
-          <span><strong>Date:</strong> {{ userAddress.orderDate | date }}</span>
-          <span><strong>Item</strong> {{ order.title }}</span>
-          <!-- Add other order details here -->
-        </li>
-      </ul>
-    </div>
+    <p> {{currentUser.firstname }} {{currentUser.lastname }}</p>
   </div>
+
+  <div class="user-item">
+  <div class="user-item-header"><strong>Email</strong>
+    <mat-icon matTooltip="Edit" (click)="profileEdit('Email')">edit</mat-icon>
+  </div>
+  <p> {{currentUser.email}}</p>
+  </div>
+
+
+<div class="user-item">
+  <div class="user-item-header"><strong>Mobile Number</strong>
+    <mat-icon matTooltip="Edit" (click)="profileEdit('MobileNumber')">edit</mat-icon>
+  </div>
+  <p> +91 {{currentUser.address[0].phoneNumber}}</p>
+  <p style="font-size: small;">Quickly sign in, easily recover passwords and 
+    receive security notifications with this mobile number.</p>
+  </div>
+
+
+<div class="user-item">
+  <div class="user-item-header"><strong>Password</strong>
+   <mat-icon matTooltip="Edit" (click)="profileEdit('Password')">edit</mat-icon>
+  </div>
+  <p> {{ currentUser.password}}</p>
+  </div>
+
+  <div class="user-item">
+    <div class="user-item-header"><strong>Comprimised Account</strong>
+    <mat-icon matTooltip="Delete" (click)="profileDelete()" style="color: rgb(185, 45, 45);">delete</mat-icon>
+    </div>
+    <p style="font-size: small;"> Take steps to deactivate and delete your account.</p>
+    </div>
+
+</div>
+    <div><strong>Address:</strong></div>
+    <div *ngFor="let address of currentUser.address; let i = index" class="address-item">
+
+      <h2>{{ address.fullName }} &nbsp; <span style="background-color: rgb(173, 173, 173); color:aliceblue"
+          *ngIf="i !=1 ">
+          HOME </span>
+        <span style="background-color: rgb(173, 173, 173); color:aliceblue" *ngIf="i == 1 ">
+          WORK </span>
+        <span style="position: absolute;
+        right: 31%;"> 
+          <span style="margin-right: 3%; color:yellowgreen" (click)="editAddresspopup(address,i)"> <mat-icon matTooltip="Edit">edit</mat-icon></span>
+          <span style="color: red;" (click)="deletepopup(address,i)"> <mat-icon matTooltip="Delete">delete</mat-icon></span>
+        </span>
+      </h2>
+      <h2> <mat-icon style="padding-top: 1%;margin-right: 2%;">phone</mat-icon> <span style="padding-top: 2%;">{{
+          address.phoneNumber }}</span></h2>
+      <p> {{ address.addressLine1 }} </p>
+      <p>{{ address.city }}, {{ address.state }},<strong> {{ address.pinCode }} </strong></p>
+
+    </div>
+
   
 
+  <!-- Past Orders -->
+  <div class="past-orders">
+    <h2>Past Orders</h2>
+    <ul>
+      <li *ngFor="let order of userOrders" style="margin-bottom: 4%;">
+        <span><strong>Order ID:</strong> {{ order.id }}</span>
+        <span><strong> Order Date:</strong> {{ order.orderDate | date }}</span>
+        <span><strong> Total Amount</strong> {{ order.amount | currency:'INR' }}</span>
+        <button mat-raised-button  (click)="ViewOrder(order)">View Order</button>
+        <!-- Add other order details here routerLink="./order"-->
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
 
 
-
-<!-- *ngFor="let item of profiles" 
- <div class="product-details-container" >
-    <div class="product-image">
-         <img src="{{item.image}}" alt="Product Image"> 
-        Hello, {{profiles.firstname}}
-    </div>
-     <div class="product-details">
-         <h2>{{item.title}}</h2> 
-        <h1> <span style="background-color: green;color: white;">{{item.rating.rate}}
-                <mat-icon>star</mat-icon></span>
-            <span style="margin-left:2% ;">{{item.rating.count}} Ratings & 1,880 Reviews</span>
-            <span> <img src="assets/assured.jpg" style="height: 40px; width: 50px;margin-left: 3%;"></span>
-        </h1>
-
-        <h3 style="text-align: justify;">{{item.description}} </h3>
-        <h3 style="display:flex;"><strong>Price: </strong> {{ item.price | currency:'INR' }} </h3>
-        <h3><strong>Quantity: </strong> {{ item.quantity }} </h3>
-        <h2><strong>Amount: </strong> {{ item.amount | currency:'INR' }} </h2>
-
-    </div> 
-</div>  -->

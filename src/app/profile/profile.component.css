@@ -18,17 +18,30 @@
 
   .profile-container {
     max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
+    margin: 2% auto;
+    padding: 50px;
+    /* border: 1px solid #ccc; */
     border-radius: 5px;
     background-color: #f9f9f9;
   }
   
-  h2 {
-    text-align: center;
-  }
-  
+ .user-item{
+  border:2px solid rgb(190, 173, 173);
+  padding: 3%;
+  border-radius: 5px;
+  font-size:medium;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+ }
+ .user-item-header{
+  margin-bottom: 1.5%;
+ 
+ }
+ .user-item-header > mat-icon{
+  position: absolute;
+  right: 33%;
+  color:rgb(172, 233, 164)
+
+ }
   .user-info, .past-orders {
     margin-bottom: 20px;
   }
@@ -49,27 +62,19 @@
     display: block;
   }
   
+  .address-list {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .address-item {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #eee;
+    margin-bottom: 3%;
+    border-radius: 5%;
+  }
+  
 
-
-/* 
-  .product-details-container {
-    display: flex;
-    align-items: flex-start;
-    margin-top:7%;
-  }
-  
-  .product-image {
-    flex: 0 0 auto;
-    margin-right: 20px;
-  }
-  
-  .product-image img {
-    max-width: 200px; 
-    height: auto;
-    text-align: center;
-  }
-  
-  .product-details {
-    flex: 1;
-  }
-   */

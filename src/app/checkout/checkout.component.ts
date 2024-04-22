@@ -7,6 +7,8 @@ import { UserService } from '../Services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
 import { Router } from '@angular/router';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -17,9 +19,12 @@ import { Router } from '@angular/router';
 export class CheckoutComponent implements OnInit {
   addressForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private _service: ProductService, private http: HttpClient,
+  constructor(private fb: FormBuilder,
+    private _service: ProductService,
+    private http: HttpClient,
     private _user: UserService,
     private _api: ApiService,
+    private editDialog: MatDialog,
     private router: Router,
     private toastr: ToastrService,
   ) { }
@@ -38,7 +43,7 @@ export class CheckoutComponent implements OnInit {
       city: ['', Validators.required],
       state: ['', Validators.required],
       pinCode: ['', [Validators.required, Validators.minLength(6)]],
-      orderDate: [new Date()],
+     
     });
     this.getdata();
     this.getUser();
@@ -75,7 +80,8 @@ export class CheckoutComponent implements OnInit {
     this._user.getAllRegisterUser().subscribe({
       next: res =>{
       const users = res.find((user:any) =>{
-        return user.email === this.currentUserData.email && user.password === this.currentUserData.password;
+        return user.id === this.currentUserData.id;
+        //return user.email === this.currentUserData.email && user.password === this.currentUserData.password;
       });
       
       if(users){
@@ -110,23 +116,18 @@ export class CheckoutComponent implements OnInit {
             this.getUser();
            }
            )}
-               
-      this.currentUserData.address = this.addressForm.value;
-      this.currentUserData.order = this.cartItems;
-      localStorage.setItem('currentUser', JSON.stringify(this.currentUserData));
-
+    
       this.addressForm.reset();
       this.showForm = false;
-      //this.nextStep();
       this.toastr.success("Address added successfully !! ", 'Success Message!', {
         progressBar: true,
         closeButton: true,
-      });
-    }
+    });
+  }
   
 
   showForm: boolean = false; // Flag to show/hide add address form
-  addressBox : boolean =true;
+  addressBox : boolean = true;
   ShippingAddress :any;
   selectAddress(address: any) {
     // Logic to select address
@@ -134,7 +135,33 @@ export class CheckoutComponent implements OnInit {
     console.log('Selected address:', address);
      this.nextStep();
   }
+  editAddresspopup(address: any,index:any){
+    const editref = this.editDialog.open(EditDialogComponent, {
+      width: '25%',
+      data: address
+    });
+    editref.afterClosed().subscribe({
+      next: (val) => {
+        if(val.close){
+        //console.log('patch val',val);
+        this.address[index]= val.data;
+        //console.log('up', this.address)
+        this.currentUser.address = this.address;
+  
+           this._user.updateUser(this.currentUser.id, this.currentUser).subscribe((res)=>{
+            console.log("Updated");
+            this.getUser();
+           })
+           this.toastr.success("Address updated successfully !! ", 'Success Message!', {
+            progressBar: true,
+            closeButton: true,
+        });
+      }
+      }
 
+
+    })
+  }
   showAddAddressForm() {
     // Show add address form
     this.showForm = true;
@@ -146,24 +173,21 @@ export class CheckoutComponent implements OnInit {
     this.showForm = false;
     this.addressBox = true;
   }
-  // selectedPayment!: string;
+  
 
   onSelectionChange(event :any) {
-   // this.selectedPayment = (event.options as MatListOptionTogglePosition).value;
         console.log('Selected Payment:', event.selectedOptions.selected[0]._value);
         this.orders.paymentType = event.selectedOptions.selected[0]._value;
   }
 
   orders = {
-    
     userId: '',
     email:'',
     order: [],
     address:'',
     paymentType:'',
-    amount:''
-
-
+    amount:'',
+    orderDate:new Date(),
   };
  
   placeOrder() {

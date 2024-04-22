@@ -46,6 +46,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +63,8 @@ import {MatChipsModule} from '@angular/material/chips';
     CheckoutComponent,
     ProfileComponent,
     OrderDetailsComponent,
+    EditDialogComponent,
+    EditProfileComponent,
 
   ],
   imports: [
