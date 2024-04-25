@@ -10,22 +10,20 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './edit-dialog.component.css'
 })
 export class EditDialogComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,
+  constructor(@Inject(MAT_DIALOG_DATA) public datas: any,
   public ref: MatDialogRef<EditDialogComponent>,
   private http : HttpClient,
   private toastr: ToastrService){
   ref.disableClose = true;
 }
 
-
+data:any
+msg:string='';
+editForm!: FormGroup;
 ngOnInit(): void {
-  
-  
-}
-
-
-today = new Date();
-editForm = new FormGroup({
+  this.data = this.datas.data;
+  this.msg = this.datas.msg;
+  this.editForm = new FormGroup({
 
   fullName: new FormControl(this.data.fullName, [Validators.required]),
   addressLine1: new FormControl(this.data.addressLine1, [Validators.required]),
@@ -34,6 +32,11 @@ editForm = new FormGroup({
   state: new FormControl(this.data.state, [Validators.required]),
   pinCode: new FormControl(this.data.pinCode, [Validators.required]),
 });
+}
+
+
+today = new Date();
+
 
 pincodeURL: string = "https://api.postalpincode.in/pincode/";
 getpincode() {
@@ -50,18 +53,12 @@ getpincode() {
   })
 }
 editSubmission() {
-  //this.http.patch<any>("http://localhost:3000/registerUser/" + this.data.id, this.editForm.value)
-  //console.log(this.editForm.value);
+  
+        this.ref.close(
+          {close:true,
+          data:this.editForm.value
+        });
 
-  // this._userService.updateUser(this.data.id, this.editForm.value).subscribe({
-  //   next: (res) => {
-  //     this.toastr.success(this.editForm.value.fullName + " user modified Successfully !! ", 'Success Message!');
-  //     this.editForm.reset();
-      this.ref.close({close:true,data:
-        this.editForm.value});
-  //   },
-  //   error: console.log
-  // });
 }
 
 }

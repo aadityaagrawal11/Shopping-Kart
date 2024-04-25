@@ -33,6 +33,8 @@
     "ng-mat-carousel": "^0.11.1",
     "ngx-spinner": "^16.0.2",
     "ngx-toastr": "^18.0.0",
+    "primeicons": "^7.0.0",
+    "primeng": "^17.14.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

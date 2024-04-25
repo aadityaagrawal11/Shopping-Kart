@@ -182,7 +182,6 @@ export class CheckoutComponent implements OnInit {
 
   orders = {
     userId: '',
-    email:'',
     order: [],
     address:'',
     paymentType:'',
@@ -193,7 +192,6 @@ export class CheckoutComponent implements OnInit {
   placeOrder() {
     
     this.orders.userId = this.currentUser.id;
-    this.orders.email = this.currentUser.email;
     this.orders.address = this.ShippingAddress;
     this.orders.order = this.cartItems;
     this.orders.amount = this.totalAmount;

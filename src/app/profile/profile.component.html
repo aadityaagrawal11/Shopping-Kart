@@ -23,94 +23,189 @@
 </p>
 
 <div *ngIf="isLoading">
-  <ngx-spinner type="ball-scale-multiple"><p> Please wait!! Data is loading !!</p></ngx-spinner>
+  <ngx-spinner type="ball-scale-multiple">
+    <p> Please wait!! Data is loading !!</p>
+  </ngx-spinner>
 </div>
 
 <div *ngIf="!isLoading" class="mat-elevation-z8" style="margin: 3%;">
-<div class="profile-container">
-  <h1 style="text-align: center; color: rgb(170, 202, 238);font-size: xx-large;" >My Profile</h1>
 
-  <!-- User Information -->
-  <div class="user-info">
-    <h2 style="font-size: x-large;">Personal Information</h2>
+  <div class="card">
+    <p-tabView styleClass="tabview-custom">
+      <p-tabPanel>
+        <ng-template pTemplate="header">
+          <mat-icon>account_circle</mat-icon>
+          <span>Personal Information</span>
+        </ng-template>
+        <!-- Personal Information -->
+        <div class="profile-container">
 
-    <div class="user-item">
-    <div class="user-item-header"><strong>Name</strong>
-     <mat-icon matTooltip="Edit" (click)="profileEdit('Name')">edit</mat-icon>
-    </div>
-    <p> {{currentUser.firstname }} {{currentUser.lastname }}</p>
+          <!-- User Information -->
+          <div class="user-info">
+            <h2 style=" font-size: xx-large; margin: 2% 2%;">Personal Information</h2>
+
+            <div class="user-item">
+              <div class="user-item-header"><strong>Name</strong>
+                <mat-icon matTooltip="Edit" (click)="profileEdit('Name')">edit</mat-icon>
+              </div>
+              <p> {{currentUser.firstname }} {{currentUser.lastname }}</p>
+            </div>
+
+            <div class="user-item">
+              <div class="user-item-header"><strong>Email</strong>
+                <mat-icon matTooltip="Edit" (click)="profileEdit('Email')">edit</mat-icon>
+              </div>
+              <p> {{currentUser.email}}</p>
+            </div>
+
+
+            <div class="user-item">
+              <div class="user-item-header"><strong>Mobile Number</strong>
+                <mat-icon matTooltip="Edit" (click)="profileEdit('MobileNumber')">edit</mat-icon>
+              </div>
+              <p> +91 {{currentUser.address[0].phoneNumber}}</p>
+              <p style="font-size: small;">Quickly sign in, easily recover passwords and
+                receive security notifications with this mobile number.</p>
+            </div>
+
+
+            <div class="user-item">
+              <div class="user-item-header"><strong>Password</strong>
+                <mat-icon matTooltip="Edit" (click)="profileEdit('Password')">edit</mat-icon>
+              </div>
+              <p> {{ currentUser.password}}</p>
+            </div>
+
+            <div class="user-item">
+              <div class="user-item-header"><strong>Comprimised Account</strong>
+                <mat-icon matTooltip="Delete" (click)="profileDelete()"
+                  style="color: rgb(185, 45, 45);">delete</mat-icon>
+              </div>
+              <p style="font-size: small;"> Take steps to delete your account.</p>
+            </div>
+
+          </div>
+
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Header II">
+        <ng-template pTemplate="header">
+          <i class="pi pi-address-book"></i>
+          <span>Your Address</span>
+        </ng-template>
+        <!--        Address Section          -->
+        <div class="mat-elevation-z8" style="margin:3%">
+          <br />
+          <h2 style=" font-size: xx-large; margin: 1% 2%;">Your Addresses</h2>
+
+          <div *ngFor="let ele of currentUser.address; let i = index" class="address-item">
+
+            <h2>{{ ele.fullName }} &nbsp; <span style="background-color: rgb(173, 173, 173); color:aliceblue"
+                *ngIf="i !=1 ">
+                HOME </span>
+              <span style="background-color: rgb(173, 173, 173); color:aliceblue" *ngIf="i == 1 ">
+                WORK </span>
+
+              <span style="color:yellowgreen;padding-left: 12%;" (click)="editAddresspopup(ele,i)">
+                <mat-icon matTooltip="Edit">edit</mat-icon>
+              </span>
+              <span style="color: red;" (click)="deletepopup(ele,i)">
+                <mat-icon matTooltip="Delete">delete</mat-icon>
+              </span>
+
+            </h2>
+            <h2> <mat-icon style="padding-top: 1%;margin-right: 2%;">phone</mat-icon> <span style="padding-top: 2%;">{{
+                ele.phoneNumber }}</span></h2>
+            <p> {{ ele.addressLine1 }} </p>
+            <p>{{ ele.city }}, {{ ele.state }},<strong> {{ ele.pinCode }} </strong></p>
+
+          </div>
+
+          <div (click)="addAddresspopup()"
+            style="border: 2px dotted;  margin-bottom: 2%;font-size: xx-large; text-align: center;cursor: pointer;">
+            <mat-icon>add</mat-icon>
+            <h2>Add New Address</h2>
+
+          </div>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Past Orders">
+        <ng-template pTemplate="header">
+         
+          <span>Past Orders</span>
+          <i class="pi pi-search"></i>
+        </ng-template>
+        <!-- Past Orders -->
+        <div class="past-orders mat-elevation-z8" style="margin: 3%;">
+          <br />
+          <h2 style=" font-size: xx-large; margin: 1% 2%;">Your Past Orders</h2>
+
+          <div *ngFor="let order of userOrders, let oid=index" class="order-detail ">
+
+            <div class="order-header-row color">
+              <div class="order-header ">
+                <p><strong>Order Placed</strong> </p>
+                <p>{{order.orderDate | date}}</p>
+              </div>
+
+              <div class="order-header">
+                <p><strong>Order ID</strong> </p>
+                <p>{{order.id}}</p>
+              </div>
+
+              <div class="order-header">
+                <p><strong> Total Amount</strong> </p>
+                <p>{{ order.amount | currency:'INR' }}</p>
+              </div>
+
+
+              <div class="order-header">
+                <p><strong>Ship To</strong> <mat-icon matTooltip='{{order.address.fullName}} ,
+                      {{ order.address.addressLine1 }} 
+                      {{ order.address.city }}, {{ order.address.state }}, {{ order.address.pinCode }} '> </mat-icon> </p>
+                <p>{{order.address.fullName}}
+
+                </p>
+              </div>
+
+              <h2 style="cursor: pointer;color: rgb(69, 69, 245);" (click)="ViewOrder(order)">View Order </h2>
+              <!-- Add other order details here routerLink="./order"-->
+
+            </div>
+
+            <div *ngFor="let item of order.order, let i=index" style="margin: 1% 2%">
+
+              <div class="order-header-row">
+                <div class="order-header">
+                  <img src="{{item.image}}" alt="Product Image" height="70px" width="70px">
+                </div>
+
+                <div class="order-header">
+                  <h2>{{item.title}}</h2>
+                  <!-- <h1> <span style="background-color: green;color: white;">{{item.rating.rate}}
+               <mat-icon>star</mat-icon></span>
+            <span style="margin-left:2% ;">{{item.rating.count}} Ratings & 1,880 Reviews</span>
+            <span> <img src="assets/assured.jpg" style="height: 40px; width: 50px;margin-left: 3%;"></span>
+        </h1> -->
+                </div>
+
+                <div class="order-header">
+                  <button mat-raised-button (click)="rating(item,i,oid)">Rating & Review</button>
+                </div>
+
+
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
   </div>
 
-  <div class="user-item">
-  <div class="user-item-header"><strong>Email</strong>
-    <mat-icon matTooltip="Edit" (click)="profileEdit('Email')">edit</mat-icon>
-  </div>
-  <p> {{currentUser.email}}</p>
-  </div>
 
 
-<div class="user-item">
-  <div class="user-item-header"><strong>Mobile Number</strong>
-    <mat-icon matTooltip="Edit" (click)="profileEdit('MobileNumber')">edit</mat-icon>
-  </div>
-  <p> +91 {{currentUser.address[0].phoneNumber}}</p>
-  <p style="font-size: small;">Quickly sign in, easily recover passwords and 
-    receive security notifications with this mobile number.</p>
-  </div>
-
-
-<div class="user-item">
-  <div class="user-item-header"><strong>Password</strong>
-   <mat-icon matTooltip="Edit" (click)="profileEdit('Password')">edit</mat-icon>
-  </div>
-  <p> {{ currentUser.password}}</p>
-  </div>
-
-  <div class="user-item">
-    <div class="user-item-header"><strong>Comprimised Account</strong>
-    <mat-icon matTooltip="Delete" (click)="profileDelete()" style="color: rgb(185, 45, 45);">delete</mat-icon>
-    </div>
-    <p style="font-size: small;"> Take steps to deactivate and delete your account.</p>
-    </div>
 
 </div>
-    <div><strong>Address:</strong></div>
-    <div *ngFor="let address of currentUser.address; let i = index" class="address-item">
-
-      <h2>{{ address.fullName }} &nbsp; <span style="background-color: rgb(173, 173, 173); color:aliceblue"
-          *ngIf="i !=1 ">
-          HOME </span>
-        <span style="background-color: rgb(173, 173, 173); color:aliceblue" *ngIf="i == 1 ">
-          WORK </span>
-        <span style="position: absolute;
-        right: 31%;"> 
-          <span style="margin-right: 3%; color:yellowgreen" (click)="editAddresspopup(address,i)"> <mat-icon matTooltip="Edit">edit</mat-icon></span>
-          <span style="color: red;" (click)="deletepopup(address,i)"> <mat-icon matTooltip="Delete">delete</mat-icon></span>
-        </span>
-      </h2>
-      <h2> <mat-icon style="padding-top: 1%;margin-right: 2%;">phone</mat-icon> <span style="padding-top: 2%;">{{
-          address.phoneNumber }}</span></h2>
-      <p> {{ address.addressLine1 }} </p>
-      <p>{{ address.city }}, {{ address.state }},<strong> {{ address.pinCode }} </strong></p>
-
-    </div>
-
-  
-
-  <!-- Past Orders -->
-  <div class="past-orders">
-    <h2>Past Orders</h2>
-    <ul>
-      <li *ngFor="let order of userOrders" style="margin-bottom: 4%;">
-        <span><strong>Order ID:</strong> {{ order.id }}</span>
-        <span><strong> Order Date:</strong> {{ order.orderDate | date }}</span>
-        <span><strong> Total Amount</strong> {{ order.amount | currency:'INR' }}</span>
-        <button mat-raised-button  (click)="ViewOrder(order)">View Order</button>
-        <!-- Add other order details here routerLink="./order"-->
-      </li>
-    </ul>
-  </div>
-</div>
-</div>
-
-

@@ -53,3 +53,9 @@ mat-toolbar{
   transform: scale(1.2); /* Adjust the scale factor as needed */
   cursor: pointer;
 }
+
+.review-container{
+  width:54%;
+  margin-left:38%;
+  /* border:5px solid */
+}

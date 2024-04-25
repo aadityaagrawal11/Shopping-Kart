@@ -5,6 +5,7 @@ import { ProductService } from '../Services/product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from '../Services/api.service';
+import { UserService } from '../Services/user.service';
 
 @Component({
   selector: 'app-product-details',
@@ -14,6 +15,7 @@ import { ApiService } from '../Services/api.service';
 export class ProductDetailsComponent implements OnInit {
   constructor(private activeRoute: ActivatedRoute,
     private http: HttpClient,
+    private _user: UserService,
     private _service: ProductService,
     private _api: ApiService,
     private _snackBar: MatSnackBar,
@@ -29,10 +31,52 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
     this.activeRoute.paramMap.subscribe((params) => { this.id = params.get('productId') })         //    ['productId'];
+    this.currentUserData = JSON.parse(localStorage?.getItem('currentUser') ?? 'null');
     this.getProduct();
     this.badgetotal();
+    this.getUser();
 
   }
+
+  currentUserData: any;
+  pastOrders: any;
+  currentUser: any| undefined;
+  userOrders: any;
+  temp:any=[];
+
+  getUser() {
+    this._user.getAllRegisterUser().subscribe({
+      next: res => {
+        const users = res.find((user: any) => {
+          return user.id === this.currentUserData.id;
+          //return user.email === this.currentUserData.email && user.password === this.currentUserData.password;
+        });
+
+        if (users) {
+          this.currentUser = users;
+          this.temp = users.address
+          console.log(this.currentUser);
+         
+        }
+      }
+    })
+    this.http.get<any>('http://localhost:3000/order').subscribe((res) => {
+      let order = res.map((item: any) => {
+        if (item.userId === this.currentUser.id)
+          return item;
+
+      });
+      order = order.filter( (element: any) => {
+        return element !== undefined;
+      });
+      this.userOrders = order;
+      console.log('Order',this.userOrders);
+     
+    })
+
+  }
+
+
 
   getProduct() {
     //this.http.get<any>(this.url + this.id).subscribe({

@@ -48,6 +48,12 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { RatingComponent } from './rating/rating.component';
+import { TabViewModule } from 'primeng/tabview';
+import { PanelModule } from 'primeng/panel';
+import { ButtonModule } from 'primeng/button';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +71,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     OrderDetailsComponent,
     EditDialogComponent,
     EditProfileComponent,
+    RatingComponent,
 
   ],
   imports: [
@@ -103,6 +110,10 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     MatListModule,
     MatGridListModule,
     NgxSpinnerModule,
+    TabViewModule,
+    PanelModule,
+    ButtonModule,
+    AvatarModule ,AvatarGroupModule ,
   ],
   providers: [
     provideClientHydration(),

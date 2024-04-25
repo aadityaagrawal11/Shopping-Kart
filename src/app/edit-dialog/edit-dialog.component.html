@@ -1,5 +1,5 @@
 <div class="header">
-    <h1 style="color: white;font-weight: bold;" mat-dialog-title>Edit Address</h1>
+    <h1 style="color: white;font-weight: bold;" mat-dialog-title>{{msg}} Address</h1>
     <span class="close-button topright">
         <button mat-icon-button mat-dialog-close>
             <mat-icon fontIcon="close-button"></mat-icon>
@@ -61,7 +61,7 @@
 
     <div mat-dialog-actions class="btn">
         <button [disabled]="!editForm.valid" type="submit" mat-raised-button class="btn-inside"
-            (click)="editSubmission()" color="accent">Update</button>
+            (click)="editSubmission()" color="accent">{{msg == 'Add' ? 'Add' : 'Update' }}</button>
         <button type="button" mat-raised-button [mat-dialog-close]="{close:false}" class="btn-inside"
             color="warn">Cancel</button>
     </div>
