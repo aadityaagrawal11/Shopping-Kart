@@ -1,5 +1,39 @@
 {
-  "addToCart": [],
+  "addToCart": [
+    {
+      "id": "1",
+      "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+      "price": 109.95,
+      "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      "category": "men's clothing",
+      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+      "rating": {
+        "rate": 3.9,
+        "count": 120
+      },
+      "quantity": "1",
+      "amount": 109.95,
+      "addedToCart": true,
+      "customerReviews": [
+        {
+          "userId": "efc0",
+          "userName": "Ankit",
+          "userRating": 4,
+          "userReview": "Comfortable and Best qualty at this Price.",
+          "userReviewTitle": "Good Bag",
+          "ReviewDate": "2024-04-27T19:24:21.654Z"
+        },
+        {
+          "userId": "c0c8",
+          "userName": "Aditya ",
+          "userRating": 3,
+          "userReview": "Quality is Good. You can buy for regular use",
+          "userReviewTitle": "GO for It!!",
+          "ReviewDate": "2024-04-27T19:32:56.549Z"
+        }
+      ]
+    }
+  ],
   "productApi": [
     {
       "id": "1",
@@ -12,9 +46,27 @@
         "rate": 3.9,
         "count": 120
       },
-      "quantity": 0,
-      "amount": 0,
-      "addedToCart": false
+      "quantity": "1",
+      "amount": 109.95,
+      "addedToCart": true,
+      "customerReviews": [
+        {
+          "userId": "efc0",
+          "userName": "Ankit",
+          "userRating": 4,
+          "userReview": "Comfortable and Best qualty at this Price.",
+          "userReviewTitle": "Good Bag",
+          "ReviewDate": "2024-04-27T19:24:21.654Z"
+        },
+        {
+          "userId": "c0c8",
+          "userName": "Aditya ",
+          "userRating": 3,
+          "userReview": "Quality is Good. You can buy for regular use",
+          "userReviewTitle": "GO for It!!",
+          "ReviewDate": "2024-04-27T19:32:56.549Z"
+        }
+      ]
     },
     {
       "id": "2",
@@ -29,7 +81,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "3",
@@ -44,7 +97,16 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": [
+        {
+          "userId": "efc0",
+          "userName": "Ankit",
+          "userRating": 5,
+          "userReview": "Best Product at this Price. Love to wear this product in the Party",
+          "userReviewTitle": "This is a Excellent Product "
+        }
+      ]
     },
     {
       "id": "4",
@@ -59,7 +121,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "5",
@@ -74,7 +137,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "6",
@@ -89,7 +153,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "7",
@@ -104,7 +169,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "8",
@@ -119,7 +185,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "9",
@@ -134,7 +201,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "10",
@@ -149,7 +217,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "11",
@@ -164,7 +233,17 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": [
+        {
+          "userId": "efc0",
+          "userName": "Ankit",
+          "userRating": 3,
+          "userReview": "This is really a good Product. I am so happy with the Product Quality and the built",
+          "userReviewTitle": "Good Product",
+          "ReviewDate": "2024-04-27T19:14:00.832Z"
+        }
+      ]
     },
     {
       "id": "12",
@@ -179,7 +258,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "13",
@@ -194,7 +274,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "14",
@@ -209,7 +290,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "15",
@@ -224,7 +306,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "16",
@@ -239,7 +322,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "17",
@@ -254,7 +338,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "18",
@@ -269,7 +354,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "19",
@@ -284,7 +370,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     },
     {
       "id": "20",
@@ -299,7 +386,8 @@
       },
       "quantity": 0,
       "amount": 0,
-      "addedToCart": false
+      "addedToCart": false,
+      "customerReviews": []
     }
   ],
   "user": [
@@ -344,11 +432,29 @@
           "pinCode": "492001"
         }
       ]
+    },
+    {
+      "id": "c0c8",
+      "firstname": "Aditya ",
+      "lastname": "Agrawal",
+      "email": "adi@gmail.com",
+      "password": "121",
+      "confirmPassword": "121",
+      "address": [
+        {
+          "fullName": "Aditya",
+          "addressLine1": "Gurudwara Road ",
+          "phoneNumber": "9234544569",
+          "city": "Ballia",
+          "state": "Uttar Pradesh",
+          "pinCode": "277001"
+        }
+      ]
     }
   ],
   "order": [
     {
-      "id": "3a57",
+      "id": "f49e",
       "userId": "efc0",
       "order": [
         {
@@ -364,25 +470,66 @@
           },
           "quantity": "2",
           "amount": 44.6,
-          "addedToCart": true
-        },
-        {
-          "id": "5",
-          "title": "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
-          "price": 695,
-          "description": "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-          "category": "jewelery",
-          "image": "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
-          "rating": {
-            "rate": 4.6,
-            "count": 400
-          },
-          "quantity": "3",
-          "amount": 2085,
           "addedToCart": true,
           "userRating": 4,
-          "userReview": "The Product is very Nice. I like the quality of the braclet. It is too durable and comfortable.",
-          "userReviewTitle": "Best Braclet at this Price. Love the Product",
+          "userReview": "",
+          "userReviewTitle": "",
+          "isReviewed": true
+        },
+        {
+          "id": "3",
+          "title": "Mens Cotton Jacket",
+          "price": 55.99,
+          "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
+          "rating": {
+            "rate": 4.7,
+            "count": 500
+          },
+          "quantity": "2",
+          "amount": 111.98,
+          "addedToCart": true,
+          "userRating": 5,
+          "userReview": "Best Product at this Price. Love to wear this product in the Party",
+          "userReviewTitle": "This is a Excellent Product ",
+          "isReviewed": true
+        }
+      ],
+      "address": {
+        "fullName": "Shyam Sundar",
+        "addressLine1": "Near nit College",
+        "phoneNumber": "9878789878",
+        "city": "Raipur",
+        "state": "Chattisgarh",
+        "pinCode": "492001"
+      },
+      "paymentType": "Cash on Delivery",
+      "amount": 156.58,
+      "orderDate": "2024-04-25T14:48:49.326Z"
+    },
+    {
+      "id": "59f4",
+      "userId": "efc0",
+      "order": [
+        {
+          "id": "11",
+          "title": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
+          "price": 109,
+          "description": "3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.",
+          "category": "electronics",
+          "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
+          "rating": {
+            "rate": 4.8,
+            "count": 319
+          },
+          "quantity": "3",
+          "amount": 327,
+          "addedToCart": true,
+          "customerReviews": [],
+          "userRating": 3,
+          "userReview": "This is really a good Product. I am so happy with the Product Quality and the built",
+          "userReviewTitle": "Good Product",
           "isReviewed": true
         }
       ],
@@ -394,28 +541,33 @@
         "state": "Gujarat",
         "pinCode": "390001"
       },
-      "paymentType": "UPI",
-      "amount": 2129.6,
-      "orderDate": "2024-04-25T04:54:35.908Z"
+      "paymentType": "Net Banking",
+      "amount": 327,
+      "orderDate": "2024-04-26T14:13:58.040Z"
     },
     {
-      "id": "3141",
+      "id": "0935",
       "userId": "efc0",
       "order": [
         {
-          "id": "10",
-          "title": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
-          "price": 109,
-          "description": "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
-          "category": "electronics",
-          "image": "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
+          "id": "1",
+          "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+          "price": 109.95,
+          "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
           "rating": {
-            "rate": 2.9,
-            "count": 470
+            "rate": 3.9,
+            "count": 120
           },
           "quantity": "2",
-          "amount": 218,
-          "addedToCart": true
+          "amount": 219.9,
+          "addedToCart": true,
+          "customerReviews": [],
+          "userRating": 4,
+          "userReview": "Comfortable and Best qualty at this Price.",
+          "userReviewTitle": "Good Bag",
+          "isReviewed": true
         }
       ],
       "address": {
@@ -426,9 +578,68 @@
         "state": "Uttar Pradesh",
         "pinCode": "277001"
       },
-      "paymentType": "Credit Card",
-      "amount": 218,
-      "orderDate": "2024-04-25T04:54:58.055Z"
+      "paymentType": "Cash on Delivery",
+      "amount": 219.9,
+      "orderDate": "2024-04-27T19:20:07.581Z"
+    },
+    {
+      "id": "cb79",
+      "userId": "c0c8",
+      "order": [
+        {
+          "id": "1",
+          "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+          "price": 109.95,
+          "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+          "category": "men's clothing",
+          "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+          "rating": {
+            "rate": 3.9,
+            "count": 120
+          },
+          "quantity": "3",
+          "amount": 329.85,
+          "addedToCart": true,
+          "customerReviews": [
+            {
+              "userId": "efc0",
+              "userName": "Ankit",
+              "userRating": 4,
+              "userReview": "Comfortable and Best qualty at this Price.",
+              "userReviewTitle": "Good Bag",
+              "ReviewDate": "2024-04-27T19:24:21.654Z"
+            }
+          ],
+          "userRating": 3,
+          "userReview": "Quality is Good. You can buy for regular use",
+          "userReviewTitle": "GO for It!!",
+          "isReviewed": true
+        }
+      ],
+      "address": {
+        "fullName": "Aditya",
+        "addressLine1": "Gurudwara Road ",
+        "phoneNumber": "9234544569",
+        "city": "Ballia",
+        "state": "Uttar Pradesh",
+        "pinCode": "277001"
+      },
+      "paymentType": "Cash on Delivery",
+      "amount": 329.85,
+      "orderDate": "2024-04-27T19:29:53.659Z"
+    }
+  ],
+  "chatBot": [
+    {
+      "id": "a37b",
+      "chat": [
+        {
+          "sender": "bot",
+          "message": "How can I help you!!",
+          "time": "2024-05-07T12:49:38.614Z",
+          "clickable": false
+        }
+      ]
     }
   ]
 }

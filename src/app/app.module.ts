@@ -45,7 +45,7 @@ import { RegisterComponent } from './register/register.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { RatingComponent } from './rating/rating.component';
@@ -54,6 +54,14 @@ import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToastModule } from 'primeng/toast';
+import { YouTubePlayerModule } from '@angular/youtube-player';
+import { YoutubeVideosComponent } from './youtube-videos/youtube-videos.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ChatBotComponent } from './chat-bot/chat-bot.component';
+import { ConfirmationService, MessageService } from 'primeng/api';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +80,8 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     EditDialogComponent,
     EditProfileComponent,
     RatingComponent,
+    YoutubeVideosComponent,
+    ChatBotComponent,
 
   ],
   imports: [
@@ -97,6 +107,7 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     MatChipsModule,
     MatDatepickerModule,
     MatButtonModule,
+    MatAutocompleteModule,
     MatTableModule,
     MatExpansionModule,
     MatCheckboxModule,
@@ -113,13 +124,15 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     TabViewModule,
     PanelModule,
     ButtonModule,
-    AvatarModule ,AvatarGroupModule ,
+    AvatarModule, AvatarGroupModule,
+    YouTubePlayerModule, ConfirmPopupModule,  ToastModule ,
   ],
   providers: [
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(withFetch()),
-    provideNativeDateAdapter()
+    provideNativeDateAdapter(),
+    ConfirmationService, MessageService 
   ],
   bootstrap: [AppComponent]
 })

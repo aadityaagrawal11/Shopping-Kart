@@ -11,6 +11,7 @@ export class ApiService {
 
   apiUrl: string = "https://fakestoreapi.com/products/";
   productArr :any[] = [];
+  //method to get data from API to the JSON file. 
   getdata() {
     this.http.get<any>(this.apiUrl).subscribe({
       next: (res) => {
@@ -20,6 +21,7 @@ export class ApiService {
           ele.quantity = 0;
           ele.amount = 0;
           ele.addedToCart = false;
+          ele.userReviews = [];
         })
         this.http.post<any>("http://localhost:3000/productApi",this.productArr).subscribe((res)=>console.log('Data posted')
         );
@@ -38,6 +40,12 @@ export class ApiService {
     return  this.http.get<any>(`http://localhost:3000/productApi/${id}`)
   }
 
+  getProductByCategory(category:string){
+    console.log(`http://localhost:3000/productApi?category=${category}`);
+    
+    return  this.http.get<any>(`http://localhost:3000/productApi?category=${category}`)
+    
+  }
   updateApi(id:any, data:any):Observable<any>{
     return this.http.patch<any>( `http://localhost:3000/productApi/${id}`, data);
    }

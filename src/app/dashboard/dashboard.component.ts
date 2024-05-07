@@ -7,6 +7,7 @@ import { ApiService } from '../Services/api.service';
 import { Router } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -34,6 +35,8 @@ export class DashboardComponent {
     this.badgetotal();
 
   }
+
+ 
 
   getdata() {
     //this._api.getdata();

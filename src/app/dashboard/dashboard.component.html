@@ -3,7 +3,9 @@
 
         <span>Shopping kart</span>
         <span class="search-bar">
-        <input  matInput [(ngModel)]="searchTerm" placeholder="Enter search text" class="filter">
+       
+        <input  matInput [(ngModel)]="searchTerm" placeholder="Enter search text" class="filter" >
+       
         </span>
       
         <span class="example-spacer"></span>
@@ -41,7 +43,7 @@
         <!-- Your item card template goes here -->
         <div class="mat-elevation-z8" style="margin: 2%;">
             <div fxLayout="row wrap center" fxLayoutGap="35px" class="center">
-                <div fxFlex="25" *ngFor="let item of registerArr | searchFilter: searchTerm  ; let i = index; "
+                <div fxFlex="25" *ngFor="let item of registerArr | searchFilter: searchTerm  ;  let i = index; "
                     class="mat">
 
                     <mat-card>

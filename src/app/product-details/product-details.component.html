@@ -1,101 +1,169 @@
 <p>
   <mat-toolbar color="primary">
 
-      <span>Shopping kart</span>
-      <span class="example-spacer"></span>
-      <!-- <button class="m-5" mat-raised-button color="accent" (click)="addpopup()"> Add User (+) </button>
+    <span>Shopping kart</span>
+    <span class="example-spacer"></span>
+    <!-- <button class="m-5" mat-raised-button color="accent" (click)="addpopup()"> Add User (+) </button>
     <button routerLink="/login" mat-raised-button color="warn" (click)="logout()"> Logout </button> -->
     <button routerLink="/cart">
-      <mat-icon matTooltip="Cart"  [matBadge]="badgeCount"  matBadgeColor="warn" aria-hidden="false" >
-          <svg xmlns="http://www.w3.org/2000/svg" height="24"
-              viewBox="0 0 24 24" width="24">
-              <path d="M0 0h24v24H0z" fill="none" />
-              <path
-                  d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
-          </svg></mat-icon></button>
-          <button class="margin" routerLink="#" mat-raised-button color="warn"> Logout </button>
+      <mat-icon matTooltip="Cart" [matBadge]="badgeCount" matBadgeColor="warn" aria-hidden="false">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path
+            d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+        </svg></mat-icon></button>
+    <button class="margin" routerLink="#" mat-raised-button color="warn"> Logout </button>
   </mat-toolbar>
 </p>
-  
+
 <div *ngIf="isLoading">
-  <ngx-spinner type="ball-scale-multiple"><p> Please wait!! Data is loading !!</p></ngx-spinner>
+  <ngx-spinner type="ball-scale-multiple">
+    <p> Please wait!! Data is loading !!</p>
+  </ngx-spinner>
 </div>
 
 <div *ngIf="!isLoading" style="margin-top: 6%;">
-  <div class=" mat-elevation-z8" style="padding:2%; margin:2%;" >
+  <div class=" mat-elevation-z8" style="padding:2%; margin:2%;">
     <div class="product-detail ">
-    <div class="product-image product">
-      <img class="thumbnail "  src={{product.image}} alt=" Not Available" width="80%" height="80%" />
-    </div>
-    <div class="product-info">
-      <h2>{{ product.title }}</h2> 
       
-      <h1> <span style="background-color: green;color: white;">{{product.rating.rate}} <mat-icon>star</mat-icon></span>
-        <span style="margin-left:2% ;">{{product.rating.count}} Ratings & 1,880 Reviews</span>
-      <span> <img src="assets/assured.jpg" style="height: 40px; width: 50px;margin-left: 3%;"></span></h1>
-      <p>{{ product.description }}</p>
-      <h4><b>Available offers </b></h4>
+      <div class="product-image product">
+        <img class="thumbnail " src={{product.image}} alt=" Not Available" width="80%" height="80%" />
+       
+      </div>
+      <div class="product-info">
+        <h2>{{ product.title }}</h2>
 
-        <p> <img src="assets/tag.avif" style="height: 20px; width: 30px;"><strong>Bank Offer</strong> 5% Cashback on Flipkart Axis Bank Card <span style="color: blue;">T&C</span></p>
-        
-        <p> <img src="assets/tag.avif" style="height: 20px; width: 30px;"><strong>Bank Offer</strong> Get ₹25* instant discount for the 1st Flipkart Order using Flipkart UPI <span style="color: blue;">T&C</span></p>
-        
-        <p> <img src="assets/tag.avif" style="height: 20px; width: 30px;"><strong>Special Offer</strong> Get extra ₹5000 off (price inclusive of cashback/coupon) <span style="color: blue;">T&C</span></p>
-       <br/>
-      <h1><strong>Price: </strong> {{ product.price | currency:'INR' }} </h1>
-      <br/>
+        <h1> <span style="background-color: green;color: white;">{{product.rating.rate}}
+            <mat-icon>star</mat-icon></span>
+          <span style="margin-left:2% ;">{{product.rating.count}} Ratings & 1,880 Reviews</span>
+          <span> <img src="assets/assured.jpg" style="height: 40px; width: 50px;margin-left: 3%;"></span>
+        </h1>
+        <p>{{ product.description }}</p>
+        <h4><b>Available offers </b></h4>
 
-      <mat-form-field>
-        <mat-label><strong>Quantity</strong></mat-label>
-        <input matInput type="number" min="1" max="10" [value]="getItemQuantity(product)"
+        <p> <img src="assets/tag.avif" style="height: 20px; width: 30px;"><strong>Bank Offer</strong> 5% Cashback on
+          Flipkart Axis Bank Card <span style="color: blue;">T&C</span></p>
+
+        <p> <img src="assets/tag.avif" style="height: 20px; width: 30px;"><strong>Bank Offer</strong> Get ₹25* instant
+          discount for the 1st Flipkart Order using Flipkart UPI <span style="color: blue;">T&C</span></p>
+
+        <p> <img src="assets/tag.avif" style="height: 20px; width: 30px;"><strong>Special Offer</strong> Get extra ₹5000
+          off (price inclusive of cashback/coupon) <span style="color: blue;">T&C</span></p>
+        <br />
+        <h1><strong>Price: </strong> {{ product.price | currency:'INR' }} </h1>
+        <br />
+
+        <mat-form-field>
+          <mat-label><strong>Quantity</strong></mat-label>
+          <input matInput type="number" min="1" max="10" [value]="getItemQuantity(product)"
             (input)="updateQuantity($event,product)">
 
-    </mat-form-field>
-   <h1><strong>Total: </strong> {{ product.price * getItemQuantity(product) |
-        currency:'INR' }} </h1>
-      
-      <div>
-        <button *ngIf="product.addedToCart=== false" class="btn" routerLink="/cart" [disabled]="getItemQuantity(product) === 0"  mat-raised-button color="primary"
-        (click)="addtocart(product)"> Add to cart  </button>
+        </mat-form-field>
+        <h1><strong>Total: </strong> {{ product.price * getItemQuantity(product) |
+          currency:'INR' }} </h1>
 
-        <button *ngIf="product.addedToCart=== true" class="btn" routerLink="/cart" [disabled]="getItemQuantity(product) === 0"  mat-raised-button color="primary"
-        (click)="updatetocart(product)"> Update cart  </button>
+        <div>
+          <button *ngIf="product.addedToCart=== false" class="btn" routerLink="/cart"
+            [disabled]="getItemQuantity(product) === 0" mat-raised-button color="primary" (click)="addtocart(product)">
+            Add to cart </button>
 
-        <button routerLink="/dashboard" style="margin-left: 3%;" class="btn" mat-raised-button color="accent" >Cancel</button>
+          <button *ngIf="product.addedToCart=== true" class="btn" routerLink="/cart"
+            [disabled]="getItemQuantity(product) === 0" mat-raised-button color="primary"
+            (click)="updatetocart(product)"> Update cart </button>
+
+          <button routerLink="/dashboard" style="margin-left: 3%;" class="btn" mat-raised-button
+            color="accent">Cancel</button>
+        </div>
+
       </div>
-      
     </div>
   </div>
-<h2>Rating & Review </h2>
-  <div class="review-container">
-  <p-panel >
-    <ng-template pTemplate="header">
-        <div class="flex align-items-center gap-2">
-            <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" size="large" shape="circle" />
-            <span class="font-bold">{{currentUser.firstname}} </span>
-        </div>
-    </ng-template>
-    <ng-template pTemplate="footer">
-        <div class="flex flex-wrap align-items-center justify-content-between gap-3">
+
+
+  <!-- Rating and Review -->
+  <div class=" mat-elevation-z8" style="padding:2%; margin:2%;">
+    <h2 style="font-weight: 600;">Rating & Review </h2>
+
+    <div *ngIf="customerReviews.length == 0" style=" margin-left: 40%; ">
+    <img  src="./assets/rating.webp" height="300px" width="300px">
+    </div>
+
+    <div *ngIf="customerReviews.length >0">
+      <div class="review-container" *ngFor="let item of customerReviews">
+        <p-panel>
+          <ng-template pTemplate="header">
             <div class="flex align-items-center gap-2">
+              <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" size="large"
+                shape="circle" />
+              <span style="font-size:large;font-weight: 700;">{{item.userName }}</span>
+              <div>
+                <span style="background-color: green;color: white;">{{item.userRating}}
+                  <mat-icon style="height: 19px; width: 28px;">star</mat-icon></span>
+
+                <span class="p-text-secondary"> {{item.userReviewTitle}} </span>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <div class="flex flex-wrap align-items-center justify-content-between gap-3">
+              <div class="flex align-items-center gap-2">
                 <p-button icon="pi pi-user" rounded="true" text="true"></p-button>
                 <p-button icon="pi pi-bookmark" severity="secondary" rounded="true" text="true"></p-button>
+              </div>
+              <span class="p-text-secondary">Updated on {{item.ReviewDate | date}}</span>
             </div>
-            <span class="p-text-secondary">Updated 2 hours ago</span>
-        </div>
-    </ng-template>
-    <ng-template pTemplate="icons">
-        <!-- <button class="p-panel-header-icon p-link mr-2" >
-            <span class="pi pi-cog"></span>
-        </button> -->
-     
-    </ng-template>
-    <p class="m-0">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-</p-panel>
-</div>
-</div>
+          </ng-template>
+          
+          <p class="m-0">
+            {{item.userReview}}
+          </p>
+        </p-panel>
+      </div>
+    </div>
+  </div>
+ 
+  <div>
+    <app-youtube-videos> </app-youtube-videos>
+  </div>
 
-</div>
+  
+  <!-- Similiar Product -->
+  <div class=" mat-elevation-z8" style="padding:2%; margin:3%;">
+    <h2>Similiar Products</h2>
+
+    <div fxLayout="row wrap center" fxLayoutGap="35px" class="center">
+      <div fxFlex="25" *ngFor="let item of similarProducts; let i = index;" class="mat">
+
+        <mat-card style="cursor: pointer;" (click)="similiar(item)">
+          <mat-card-content>
+            <div class="product-image product">
+              <img class="image thumbnail " [src]="item.image" alt="img not available" height="250px" width="250px">
+            </div>
+            <mat-card-title class="wrap">{{item.title}}</mat-card-title>
+            <!-- <p class="description"> {{item.description}} </p> -->
+            <div>
+              <span style="background-color: green;color: white;">{{item.rating.rate}}
+                <mat-icon style="height: 19px; width: 28px;">star</mat-icon></span>
+
+              <span class="p-text-secondary"> {{item.rating.count}} Ratings & 1,880 Reviews</span>
+
+              <span> <img src="assets/assured.jpg" style="height: 40px; width: 50px;margin-left: 3%;"></span>
+            </div>
+            <br />
+            <p style="font-size: x-large;">
+              <span style="font-weight: 400;">{{item.price | currency:'INR' }}</span> &nbsp; <span style="color:green">
+                50% off</span>
+              <!-- <span style="margin-left:43%"><strong>Rating: </strong>{{item.rating.rate}}</span> -->
+            </p>
+
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div> <!-- loading data div close-->

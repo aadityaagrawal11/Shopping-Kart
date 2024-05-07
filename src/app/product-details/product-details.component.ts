@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../Services/product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -14,6 +14,7 @@ import { UserService } from '../Services/user.service';
 })
 export class ProductDetailsComponent implements OnInit {
   constructor(private activeRoute: ActivatedRoute,
+    private router:Router,
     private http: HttpClient,
     private _user: UserService,
     private _service: ProductService,
@@ -26,16 +27,16 @@ export class ProductDetailsComponent implements OnInit {
   id: any;
   isLoading: boolean = true;
   product: any;
-  url: string = "https://fakestoreapi.com/products/";
+  //url: string = "https://fakestoreapi.com/products/";
 
   ngOnInit() {
     this.spinner.show();
-    this.activeRoute.paramMap.subscribe((params) => { this.id = params.get('productId') })         //    ['productId'];
+    this.activeRoute.paramMap.subscribe((params) => { this.id = params.get('productId');       //    ['productId'];
     this.currentUserData = JSON.parse(localStorage?.getItem('currentUser') ?? 'null');
     this.getProduct();
     this.badgetotal();
     this.getUser();
-
+  }) 
   }
 
   currentUserData: any;
@@ -43,13 +44,14 @@ export class ProductDetailsComponent implements OnInit {
   currentUser: any| undefined;
   userOrders: any;
   temp:any=[];
-
+  customerReviews:any=[];
+  selectedProductCategory:string = '';
+  similarProducts:any = [];
   getUser() {
     this._user.getAllRegisterUser().subscribe({
       next: res => {
         const users = res.find((user: any) => {
           return user.id === this.currentUserData.id;
-          //return user.email === this.currentUserData.email && user.password === this.currentUserData.password;
         });
 
         if (users) {
@@ -60,6 +62,17 @@ export class ProductDetailsComponent implements OnInit {
         }
       }
     })
+    this._api.getProductApi(this.id).subscribe(res =>{
+      this.customerReviews = res.customerReviews
+      this.selectedProductCategory = res.category;
+      console.log('Reviews',this.selectedProductCategory);
+      this._api.getProductByCategory(this.selectedProductCategory).subscribe(result => {
+        this.similarProducts = result;
+        console.log('Similiar Product', this.similarProducts)
+   })
+    });
+
+ 
     this.http.get<any>('http://localhost:3000/order').subscribe((res) => {
       let order = res.map((item: any) => {
         if (item.userId === this.currentUser.id)
@@ -142,5 +155,10 @@ export class ProductDetailsComponent implements OnInit {
         //this.badgevisibility = false;
       }
     })
+  }
+
+  similiar(item:any){
+    this.router.navigate(['/dashboard/product/',item.id]);
+  
   }
 }

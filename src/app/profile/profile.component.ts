@@ -31,7 +31,7 @@ export class ProfileComponent {
     private router: Router,
     private toastr: ToastrService,
     private editDialog: MatDialog,
-    private ratingDialog :MatDialog,
+    private ratingDialog: MatDialog,
     private deleteDialog: MatDialog,
     private orderDialog: MatDialog,
     private editProfileDialog: MatDialog,
@@ -46,7 +46,7 @@ export class ProfileComponent {
   }
   currentUserData: any;
   pastOrders: any;
-  currentUser: any| undefined;
+  currentUser: any | undefined;
   userOrders: any;
   isLoading: boolean = true;
 
@@ -62,7 +62,7 @@ export class ProfileComponent {
           this.currentUser = users;
           this.temp = users.address
           console.log(this.currentUser);
-         
+
         }
       }
     })
@@ -72,11 +72,11 @@ export class ProfileComponent {
           return item;
 
       });
-      order = order.filter( (element: any) => {
+      order = order.filter((element: any) => {
         return element !== undefined;
       });
       this.userOrders = order;
-      console.log('Order',this.userOrders);
+      console.log('Order', this.userOrders);
       this.isLoading = false;
       this.spinner.hide();
     })
@@ -87,8 +87,8 @@ export class ProfileComponent {
     const editref = this.editDialog.open(EditDialogComponent, {
       width: '25%',
       data: {
-        data:address,
-        msg:'Edit'
+        data: address,
+        msg: 'Edit'
       }
     });
     editref.afterClosed().subscribe({
@@ -110,68 +110,89 @@ export class ProfileComponent {
 
     })
   }
+  customerRating = {
+    userId: '',
+    userName: '',
+    userRating: '',
+    userReview: '',
+    userReviewTitle: '',
+    ReviewDate: new Date()
 
-// Rating and Review
-  rating(item: any,index:any,oid:any){
+  };
+ 
+  // Rating and Review
+  rating(item: any, index: any, oid: any) {
+    //console.log('item', item);
+
     const ratingref = this.ratingDialog.open(RatingComponent, {
       width: '50%',
       maxHeight: '500px',
       data: item
     });
-    ratingref.afterClosed().subscribe((res)=>{
-        console.log(res)
-        console.log(`http://localhost:3000/order/${this.userOrders[oid].id}`);
-        console.log('order',oid);
-        console.log('Id of the order', this.userOrders[oid].id);
-       
-        this.userOrders[oid].order[index].userRating = res.data.rating;
-        this.userOrders[oid].order[index].userReview = res.data.review;
-        this.userOrders[oid].order[index].userReviewTitle = res.data.reviewTitle;
-        this.userOrders[oid].order[index].isReviewed = res.data.isReviewed;
-        console.log(this.userOrders);
-        this.http.patch<any>(`http://localhost:3000/order/${this.userOrders[oid].id}`,this.userOrders[oid]).subscribe((res) => {
-        console.log('res',res);
-        this.getUser();
-        console.log(this.userOrders);
-        this.toastr.success("Rating added successfully !! ", 'Success Message!', {
-          progressBar: true,
-          closeButton: true,
-        });
-    })
-       
+    ratingref.afterClosed().subscribe((res) => {
+
+      this.customerRating.userRating = res.data.rating;
+      this.customerRating.userReview = res.data.review;
+      this.customerRating.userReviewTitle = res.data.reviewTitle;
+      this.customerRating.userId = this.currentUser.id;
+      this.customerRating.userName = this.currentUser.firstname;
+
+      this._api.getProductApi(item.id).subscribe((res) => {
+        //this.data = res.customerReviews
+       // console.log('Get Data', res);
+       res.customerReviews.push(this.customerRating);
+        console.log('Array',res);
+        this._api.updateApi(item.id, res).subscribe();
+      })
+          this.userOrders[oid].order[index].userRating = res.data.rating;
+          this.userOrders[oid].order[index].userReview = res.data.review;
+          this.userOrders[oid].order[index].userReviewTitle = res.data.reviewTitle;
+          this.userOrders[oid].order[index].isReviewed = res.data.isReviewed;
+        //  console.log(this.userOrders);
+          this.http.patch<any>(`http://localhost:3000/order/${this.userOrders[oid].id}`,this.userOrders[oid]).subscribe((res) => {
+         // console.log('res',res);
+          this.getUser();
+         // console.log(this.userOrders);
+          this.toastr.success("Rating added successfully !! ", 'Success Message!', {
+            progressBar: true,
+            closeButton: true,
+          });
+      })
+
     })
   }
 
-  temp:any=[];
+  temp: any = [];
   addAddresspopup() {
     const addref = this.editDialog.open(EditDialogComponent, {
       width: '25%',
       data: {
-        data:{},
-        msg:'Add'
+        data: {},
+        msg: 'Add'
       }
     });
     addref.afterClosed().subscribe({
       next: (val) => {
         if (val.close) {
-        
+
           this.temp.push(val.data);
-           this.currentUser.address = this.temp;
-   
-            this._user.updateUser(this.currentUser.id, this.currentUser).subscribe((res)=>{
-                this.getUser();
-            }
-            )
-       
+          this.currentUser.address = this.temp;
+
+          this._user.updateUser(this.currentUser.id, this.currentUser).subscribe((res) => {
+            this.getUser();
+          }
+          )
+
           this.toastr.success("Address added successfully !! ", 'Success Message!', {
             progressBar: true,
             closeButton: true,
           });
-        }}
-      })
+        }
+      }
+    })
 
 
-    
+
   }
 
   deletepopup(address: any, index: any) {
@@ -281,15 +302,20 @@ export class ProfileComponent {
 
 
   ViewOrder(order: any) {
-    const orderref = this.orderDialog.open(OrderDetailsComponent, {
+    
+    const orderRef = this.orderDialog.open(OrderDetailsComponent, {
       width: '75%',
       maxHeight: '600px',
       data: order
     });
-    //     orderref.afterClosed().subscribe({
-    //       next: (val) => {
-    //   }
-    // })
+   
+    this.router.navigate(['/profile',
+      { outlets: { 'order-outlet': ['order',order.id] } },
+    ]);
+  
+    orderRef.afterClosed().subscribe(() => {
+      this.router.navigate(['/profile']);
+    })
 
   }
 

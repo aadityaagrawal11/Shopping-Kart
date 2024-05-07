@@ -188,7 +188,7 @@ export class CheckoutComponent implements OnInit {
     amount:'',
     orderDate:new Date(),
   };
- 
+  
   placeOrder() {
     
     this.orders.userId = this.currentUser.id;

@@ -8,18 +8,31 @@ import { RegisterComponent } from './register/register.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { ChatBotComponent } from './chat-bot/chat-bot.component';
 
 const routes: Routes = [
-  { path:'',    redirectTo:'dashboard', pathMatch:'full' },  //Default Routing
-  { path:'login', component: LoginComponent},
-  { path:'register', component: RegisterComponent},
-  { path:'profile', component: ProfileComponent},
-  // { path:'profile/order', component: OrderDetailsComponent},
-  { path:'dashboard', component: DashboardComponent},
-  { path:'dashboard/category/:categoryName',    component: DashboardComponent},
-  { path:'dashboard/product/:productId', component: ProductDetailsComponent},
-  { path:'cart',    component: AddtoCartComponent },
-  { path:'checkout',    component: CheckoutComponent},
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },  //Default Routing
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'profile', component: ProfileComponent, children: [
+      { path: 'order/:id', component: OrderDetailsComponent, outlet: 'order-outlet', }
+    ]
+
+  },
+  // { path: 'profile/order/:id', component: OrderDetailsComponent },
+  {
+    path: 'dashboard', component: DashboardComponent, children: [
+      { path: 'category/:categoryName', component: DashboardComponent },
+
+    ]
+  },
+
+  { path: 'dashboard/product/:productId', component: ProductDetailsComponent },
+  { path: 'cart', component: AddtoCartComponent },
+  { path: 'checkout', component: CheckoutComponent },
+  // { path: 'chat', component: ChatBotComponent },
+
 ];
 
 @NgModule({

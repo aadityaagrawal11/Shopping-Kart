@@ -22,8 +22,8 @@ export class ConfirmationDialogComponent {
     }
   }
   
-  hide: any; 
-  title: any; 
+  hide!: any; 
+  title!: any; 
 
   confirm() {
     this.ref.close(true);
