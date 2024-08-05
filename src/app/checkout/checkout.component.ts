@@ -30,7 +30,7 @@ export class CheckoutComponent implements OnInit {
   ) { }
 
   cartItems: any = [];
-  badgeCount: number | undefined;
+  
   pincodeURL: string = "https://api.postalpincode.in/pincode/";
   typesOfPayments: string[] = ['UPI', 'Debit Card', 'Credit Card', 'Net Banking', 'Cash on Delivery'];
   currentUserData: any
@@ -68,7 +68,7 @@ export class CheckoutComponent implements OnInit {
     this._service.getItem().subscribe({
       next: (res) => {
         this.cartItems = res;
-        this.badgeCount = res.length;
+        
         this.currentUserData = JSON.parse(localStorage?.getItem('currentUser') ?? 'null')
         //console.log(this.currentUserData);
       },

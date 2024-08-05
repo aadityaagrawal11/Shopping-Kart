@@ -9,6 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ApiService } from '../Services/api.service';
+import { CategoryService } from '../Services/category.service';
 
 @Component({
   selector: 'app-addto-cart',
@@ -17,12 +18,12 @@ import { ApiService } from '../Services/api.service';
 })
 export class AddtoCartComponent {
 
-  constructor(private _service: ProductService, private _api :ApiService,
+  constructor(private _service: ProductService, private _api :ApiService,private categoryService: CategoryService,
      private deleteDialog: MatDialog, private _snackBar: MatSnackBar, private toastr: ToastrService) { }
 
   cartItems: any = [];
   displayedColumns: string[] = ['name', 'image', 'description', 'price', 'quantity', 'amount', 'action'];
-  badgeCount: number | undefined;
+
   dataSource: any;
   ngOnInit(): void {
     this.getdata();
@@ -39,7 +40,8 @@ export class AddtoCartComponent {
              
         this.dataSource.paginator = this.page;
         this.dataSource.sort = this.sort;
-        this.badgeCount = res.length;
+  
+        this.categoryService.setBadgeTotal(res.length);
       },
       error: console.log,
 

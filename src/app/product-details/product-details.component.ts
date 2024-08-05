@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ApiService } from '../Services/api.service';
 import { UserService } from '../Services/user.service';
+import { CategoryService } from '../Services/category.service';
 
 @Component({
   selector: 'app-product-details',
@@ -19,6 +20,7 @@ export class ProductDetailsComponent implements OnInit {
     private _user: UserService,
     private _service: ProductService,
     private _api: ApiService,
+    private categoryService: CategoryService,
     private _snackBar: MatSnackBar,
     private spinner: NgxSpinnerService // Inject NgxSpinnerService
   ) { }
@@ -152,6 +154,7 @@ export class ProductDetailsComponent implements OnInit {
     this._service.getItem().subscribe({
       next: (res) => {
         this.badgeCount = res.length
+        this.categoryService.setBadgeTotal(res.length);
         //this.badgevisibility = false;
       }
     })

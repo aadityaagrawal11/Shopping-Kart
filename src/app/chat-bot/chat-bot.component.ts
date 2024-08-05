@@ -38,7 +38,7 @@ export class ChatBotComponent {
       next: (res) => {
         this.chatHistory = res[0].chat;
         this.Chatid = res[0].id;
-        console.log('get', this.chatHistory);
+        // console.log('get', this.chatHistory);
       }
     })
   }

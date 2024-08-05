@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { CategoryService } from '../Services/category.service';
 import { ApiService } from '../Services/api.service';
 import { Router } from '@angular/router';
+import { map, Observable, startWith } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 
 
@@ -77,7 +79,7 @@ export class DashboardComponent {
     this._service.getItem().subscribe({
       next: (res) => {
         this.badgeCount = res.length
-        this.badgevisibility = false;
+        this.categoryService.setBadgeTotal(res.length);
       }
     })
   }
@@ -118,7 +120,6 @@ export class DashboardComponent {
   }
 
 
-
   // Category
 
   categories: string[] = ["All Products", "Electronics", "Jewelery", "Men's clothing", "Women's clothing"];
@@ -131,13 +132,11 @@ export class DashboardComponent {
       this.getdata();
     }
     else {
-     // http://localhost:3000/productApi/?category=jewelery
-     // this.http.get<any>(this.url + 'category/' + category.toLowerCase()).subscribe({
-     this.http.get<any>(`http://localhost:3000/productApi/?category=${category.toLowerCase()}`).subscribe({   
-     next: (res) => {
+    this._api.getProductByCategory(category.toLowerCase()).subscribe({  
+    next: (res) => {
           this.registerArr = res;
 
-          console.log(res);
+          //console.log(res);
         },
         error: console.log,
 

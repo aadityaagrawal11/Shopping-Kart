@@ -2,9 +2,7 @@ table{
     padding:2%;
     margin-bottom: 2%;
 }
-.example-spacer {
-    flex: 1 1 auto;
-  }
+
   button{
     margin: 2%;
   }
@@ -12,13 +10,7 @@ table{
     margin: 1%;
     size: 2%;
   } 
-  /* mat-toolbar{
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    width: 100%;
-  } */
+
   .description{
     text-align: justify;
     justify-content: center;
@@ -50,5 +42,6 @@ table{
     top: 0;
     z-index: 1;
     background: rgb(231, 158, 158);
+
     }
   

@@ -41,7 +41,7 @@ export class ApiService {
   }
 
   getProductByCategory(category:string){
-    console.log(`http://localhost:3000/productApi?category=${category}`);
+    //console.log(`http://localhost:3000/productApi?category=${category}`);
     
     return  this.http.get<any>(`http://localhost:3000/productApi?category=${category}`)
     

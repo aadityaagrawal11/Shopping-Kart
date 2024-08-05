@@ -61,6 +61,7 @@ import { YoutubeVideosComponent } from './youtube-videos/youtube-videos.componen
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ChatBotComponent } from './chat-bot/chat-bot.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     RatingComponent,
     YoutubeVideosComponent,
     ChatBotComponent,
+    HeaderComponent,
 
   ],
   imports: [
