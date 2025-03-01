@@ -1,0 +1,87 @@
+<div class="header">
+    <h1 style="font-weight: bold;" mat-dialog-title>Rating & Review </h1>
+    <span class="close-button topright">
+        <button mat-icon-button mat-dialog-close>
+            <mat-icon fontIcon="close-button"></mat-icon>
+        </button>
+    </span>
+</div>
+
+<div class="edit-container" style="margin: 1% 2%">
+
+    <div class="order-header-row">
+        <div class="order-header">
+            <img src="{{data.image}}" alt="Product Image" height="70px" width="70px">
+        </div>
+
+        <div class="order-header">
+            <h2>{{data.title}}</h2>
+        </div>
+
+    </div>
+    <div *ngIf="!isReviewed">
+        <h1 style="font-weight: bold;" mat-dialog-title>Overall Rating </h1>
+
+        <div class="star-rating">
+
+            <mat-icon *ngFor="let star of stars" (click)="setRating(star)"
+                [style.color]="star <= rating ? 'gold' : 'gray'">star </mat-icon>
+           
+                <span style="margin-left: 3%; font-size:large;margin-bottom: 5%;font-weight: bold;">
+                <span style="color: red;" *ngIf="rating == 1">Poor</span>
+                <span style="color: rgb(207, 22, 22);" *ngIf="rating == 2">Fair</span>
+                <span style="color: greenyellow;" *ngIf="rating == 3">Good</span>
+                <span style="color: green;" *ngIf="rating == 4">Very Good</span>
+                <span style="color: rgb(55, 231, 55);" *ngIf="rating == 5">Excellent</span>
+            </span>
+
+            <p> Please press the submit button at the bottom of the page to save your changes</p>
+
+        </div>
+
+        <h2 style="font-weight: bold;" mat-dialog-title> Add a Review </h2>
+
+        <div class="content" >
+            <mat-form-field >
+                <mat-label>Add a Heading</mat-label>
+                <input matInput  placeholder="What's most Important to you?" [(ngModel)]="reviewTitle">
+            </mat-form-field>
+           
+            <mat-form-field >
+             <mat-label>Add a written review</mat-label>
+             <textarea matInput  placeholder="What did you like or dislike? What did you use this product for?" [(ngModel)]="review"></textarea>
+            </mat-form-field>
+           
+        </div>
+
+        <div mat-dialog-actions class="btn">
+            <button type="submit" mat-raised-button class="btn-inside" (click)="Submission()"
+                color="accent">Submit</button>
+            <button type="button" mat-raised-button [mat-dialog-close]="{close:false}" class="btn-inside"
+                color="warn">Cancel</button>
+        </div>
+
+    </div>
+
+    <div *ngIf="isReviewed">
+        <h1 style="font-weight: bold;" mat-dialog-title>Your Rating </h1>
+
+        <div class="star-rating">
+            <mat-icon *ngFor="let star of stars" [style.color]="star <= rating ? 'gold' : 'gray'">star </mat-icon>
+            <span style="margin-left: 3%; font-size:large;margin-bottom: 5%;font-weight: bold;">
+                <span style="color: red;" *ngIf="rating == 1">Poor</span>
+                <span style="color: rgb(207, 22, 22);" *ngIf="rating == 2">Fair</span>
+                <span style="color: greenyellow;" *ngIf="rating == 3">Good</span>
+                <span style="color: green;" *ngIf="rating == 4">Very Good</span>
+                <span style="color: rgb(55, 231, 55);" *ngIf="rating == 5">Excellent</span>
+            </span>
+        </div>
+        <div class="content">
+            <h1 style="font-weight: bold;" mat-dialog-title>Your Review </h1>
+           <strong>Title</strong>
+            <p> {{reviewTitle}} </p>
+            <strong>Description</strong>
+            <p> {{review}} </p>
+        </div>
+    </div>
+</div>

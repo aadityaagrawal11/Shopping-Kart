@@ -1,0 +1,99 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+ .search-bar{
+  margin-left: 15%;
+ 
+  cursor: pointer;
+} 
+mat-toolbar{
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+  mat-grid-tile-footer{
+    height: 44px;
+    width: 209px;
+    margin-left: 7%;
+  }
+mat-card {
+  margin: 10%;
+  margin-bottom:13px;
+  padding: 2%;
+  /* border: 4px solid red; */
+  height: 90%;
+  width: 120%;
+}
+.mat {
+    margin-left: 45px; /* Adjust the value as needed */
+    margin-bottom: 20px; /* Adjust the value as needed */
+  }
+button {
+  margin: 2%;
+}
+.btn{
+  width:225px;
+  height:50px;
+  margin:0% 3%;
+  /* font-size: large; */
+  /* margin-left: 5px; */
+}
+.image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10%;
+  margin-top: 10%;
+}
+
+.description{
+    text-align: justify;
+    justify-content: center;
+    padding:2%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    max-width: 90ch;
+}
+.wrap{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  max-width: 31ch;
+}
+
+.category-selector {
+  display: flex;
+  flex-direction: column;
+  margin-left:5%;
+  margin-right:3%;
+}
+
+mat-grid-list {
+  margin-top: 10px;
+}
+
+mat-grid-tile {
+  /* display: flex;
+  flex-direction: column; */
+  /* align-items: center;
+  justify-content: center; */
+  cursor: pointer; 
+  /* border: 5px solid greenyellow; */
+}
+
+mat-grid-tile img {
+  width: 85%; /* Adjust as needed */
+  height: 120%; /* Adjust as needed */
+  object-fit:cover;
+}
+
+mat-grid-tile h3 {
+  margin: 10px;
+  text-align: center;
+  /* border: 5px solid rgb(190, 15, 123); */
+ 
+}
+

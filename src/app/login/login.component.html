@@ -1,0 +1,49 @@
+<h2 class="text-uppercase text-center mb-5 mt-5">Login User</h2>
+<div class="container ">
+
+     <!-- -->
+    <form [formGroup]="loginForm" (ngSubmit)="submit(loginForm)" >
+
+
+        <div class="form-group" >
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+                <mat-error *ngIf="loginForm.controls.email.invalid && loginForm.controls.email.touched">
+                  Please enter valid Email ID.
+                </mat-error>
+              </mat-form-field>
+           
+         </div>
+
+        <pre></pre>
+
+        <div class="form-group">
+            <mat-form-field appearance="fill"> 
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button type="button" mat-icon-button matSuffix (click)="hide = !hide" >
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched">
+                  Please enter  the Password
+                </mat-error>
+              </mat-form-field> 
+          
+         </div>
+
+        <pre></pre>
+        
+        <div  class="btn">
+            <button type ="submit" [disabled]="loginForm.invalid" class="btn-inside" 
+            mat-flat-button color="primary">Login</button>
+            
+        </div> 
+        <!-- <button [disabled]="loginForm.invalid" class =" btn btn-success btn-block btn-lg mb-2 ms-2 mt-1" id="submit" type="submit">Login</button> -->
+        
+         <p class="text-center text-muted mt-2 mb-1">Not a User? <a routerLink="/register" 
+             class="fw-bold text-body"><u>Register here</u></a></p>
+            
+    </form>
+
+</div> 

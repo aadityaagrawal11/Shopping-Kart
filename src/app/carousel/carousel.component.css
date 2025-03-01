@@ -1,0 +1,15 @@
+center{
+    text-align: center;
+    justify-content: center;
+    width: 70%;
+    margin-left:10%;
+    margin-right:10%;
+    display: block;
+    position: absolute;
+    inset: 0px;
+    padding: inherit;
+    object-fit: cover;
+    opacity: 0;
+    height:40%;
+    border: 5px;
+}

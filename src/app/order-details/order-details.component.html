@@ -1,0 +1,54 @@
+<span class="close-button topright">
+    <button mat-icon-button mat-dialog-close>
+        <mat-icon fontIcon="close-button"></mat-icon>
+    </button>
+</span>
+
+<h2 style="margin-left: 2%;margin-top: 3%;font-size: xx-large;"> Order Details</h2>
+<div class="order-detail"> Ordered on {{User.orderDate | date}}   | <strong>Order ID:</strong> {{User.id}} </div>
+<div class="shipping-container mat-elevation-z8">
+<div class="shipping">
+    <h2>Shipping Address</h2>
+        <p>{{User.address.fullName}}  </p>
+        <p>{{User.address.addressLine1}}  </p>
+        <p>{{User.address.city}} , {{User.address.state}} &nbsp;  {{User.address.pinCode}} </p>
+        <p>{{User.address.phoneNumber}}  </p>
+    </div>
+    <div class="payment">
+    <h2> Payment Method</h2>
+    <img src="assets/payment.jpg" width="100px" height="75px">
+    <p> {{ User.paymentType }}</p>
+    </div>
+    <div class="amount">
+        <h2> Order Summary </h2>
+        <p>  Item(s) Subtotal: <strong> {{ User.amount | currency:'INR'}} </strong></p>
+        <p> Discount : 0</p>
+        <p> Grand Total <strong>{{ User.amount | currency:'INR'}} </strong></p>
+    </div>
+</div>
+
+<div class="mat-elevation-z8" style="margin: 2%;">
+<div *ngFor="let item of Orders"  >
+   <div class="product-details-container " >
+   
+    <div class="product-image">
+         <img src="{{item.image}}" alt="Product Image" height="100px" width="100px"> 
+       
+    </div>
+     <div class="product-details">
+         <h2>{{item.title}}</h2> 
+        <h1> <span style="background-color: green;color: white;">{{item.rating.rate}}
+                <mat-icon>star</mat-icon></span>
+            <span style="margin-left:2% ;">{{item.rating.count}} Ratings & 1,880 Reviews</span>
+            <span> <img src="assets/assured.jpg" style="height: 40px; width: 50px;margin-left: 3%;"></span>
+        </h1>
+
+        <h3 style="text-align: justify;">{{item.description}} </h3>
+        <h3 style="display:flex;"><strong>Price: </strong> {{ item.price | currency:'INR' }} </h3>
+        <h3><strong>Quantity: </strong> {{ item.quantity }} </h3>
+        <h2><strong>Amount: </strong> {{ item.amount | currency:'INR' }} </h2>
+
+    </div> 
+</div>
+</div>   
+</div>

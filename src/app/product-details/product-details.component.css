@@ -1,0 +1,90 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+mat-toolbar{
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.margin {
+  margin: 3%;
+}
+.product-detail {
+  display: flex;
+  align-items: center;
+  margin: 5%;
+}
+
+.product-image {
+  flex: 1;
+  padding: 20px;
+}
+
+.product-info {
+  flex: 2;
+  padding: 20px;
+}
+
+.product-info h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.product-info p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  text-align: justify;
+  margin-right: 3%;
+}
+
+.btn{
+    width:150px;
+    height:50px;
+    font-size: large;
+}
+
+.thumbnail {
+  transition: transform 0.3s ease;
+}
+
+.product:hover .thumbnail {
+  transform: scale(1.2); /* Adjust the scale factor as needed */
+  cursor: pointer;
+}
+
+.review-container{
+  width:54%;
+  margin-left:38%;
+  margin-bottom: 2%;
+  /* border:5px solid */
+}
+
+
+mat-card {
+  margin: 10%;
+  margin-bottom:13px;
+  padding: 2%;
+  border:2px solid rgb(190, 173, 173);
+  height: 90%;
+  width: 120%;
+}
+
+.image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10%;
+  margin-top: 10%;
+}
+.wrap{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  max-width: 31ch;
+}
+.mat {
+  margin-left: 45px; /* Adjust the value as needed */
+  margin-bottom: 20px; /* Adjust the value as needed */
+}

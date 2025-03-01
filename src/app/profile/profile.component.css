@@ -1,0 +1,78 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+   .search-bar{
+    margin-left: 15%;
+    cursor: pointer;
+  } 
+  /* mat-toolbar{
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+  } */
+  button{
+    margin: 2%;
+  }
+
+  .profile-container {
+    max-width: 68%;
+    margin:  auto;
+    padding: 30px;
+    border-radius: 5px;
+  }
+  
+ .user-item{
+  border:2px solid rgb(190, 173, 173);
+  padding: 3%;
+  border-radius: 5px;
+  font-size:medium;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+ }
+ .user-item-header{
+  margin-bottom: 1.5%;
+ 
+ }
+ .user-item-header > mat-icon{
+  position: absolute;
+  right: 24%;
+  color:rgb(172, 233, 164)
+
+ }
+ ng-template {
+  text-decoration: none;
+ }
+ .order-detail{
+  border:2px solid rgb(190, 173, 173);
+  margin: 2%;
+  border-radius: 5px;
+  padding: 1%;
+ }
+ .order-header-row{
+  display: flex;
+  justify-content:space-between;
+  text-transform: uppercase;
+ }
+ .order-header{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2%;
+  /* align-items: center;
+  justify-content:space-between; */
+  
+ }
+  
+
+  .address-item {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #eee;
+    margin: 1%;
+    border-radius: 5%;
+    display: inline-block;
+    width:30%;
+    height:30%;
+  }
+  
+

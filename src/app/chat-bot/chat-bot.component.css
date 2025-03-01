@@ -1,0 +1,199 @@
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/* chat.component.css */
+
+.close-button {
+  border: none;
+  display: inline-block;
+  padding: 8px 16px;
+  vertical-align: middle;
+  /* overflow: hidden; */
+  text-decoration: none;
+  color: red;
+  text-align: center;  cursor: pointer;
+  white-space: nowrap;
+  height: 4px;
+}
+
+.topright {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.header {
+  background-color: rgb(40, 43, 209) !important;
+  color: white;
+  height: 111px;
+  padding: 3%;
+  position: sticky;
+  top: 0px;
+  z-index: 5;
+ 
+}
+
+.chat-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #007bff;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.chat-container {
+  /* display: none;  Initially hide the chat container */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 500px;
+  min-height: 500px;
+  max-height: 501px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+.messages {
+  margin-bottom: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  
+}
+
+.message {
+  border-radius: 13px;
+  padding: 10px 20px;
+  font-size: 16px;
+  max-width: 60%;
+}
+
+.user-message {
+  text-align: right;
+  background-color:#814eb1;
+  color: #fff;
+  margin-left: 100px;
+  border-radius: 15px;
+  margin: 2%;
+  overflow: hidden;
+  padding: 8px 14px;
+  width: max-content;
+  align-self: flex-end;
+}
+
+.user-message:hover {
+  background-color: #f0f0f0;
+}
+
+.edit-delete-buttons {
+  display: none;
+  position: relative;
+  top: 5;
+  right: 5;
+  padding: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.user-message:hover .edit-delete-buttons {
+  display: flex;
+}
+
+
+.bot-message {
+  text-align: left;
+  background-color: #044b04;
+  color: #fff;
+  margin-right: 100px;
+  border-radius: 15px;
+  margin: 2%;
+  overflow: hidden;
+  padding: 8px 14px;
+  width: max-content;
+  align-self: flex-start;
+}
+
+/* Category Product CSS */
+mat-card {
+  margin: 10%;
+  margin-bottom:13px;
+  padding: 2%;
+  border:2px solid rgb(190, 173, 173);
+  border-radius: 5%;
+  height: 94%;
+  width: 397%;
+  cursor: pointer;
+}
+
+.image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height:100px;
+  width:100px;
+}
+.wrap{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  max-width: 20ch;
+  color: red;
+}
+
+
+.input-container {
+  margin-top: 10px;
+  position: fixed;
+  bottom: 20px;
+  width: 31.8rem;
+  border-radius: 8px;
+}
+
+input {
+  padding: 5px;
+  /* width: calc(100% - 60px); */
+  height: 40px;
+  width: 82%;
+  border-radius: 8px;
+}
+
+.input-container > button {
+  padding: 5px 10px;
+  height: 40px;
+  cursor: pointer;
+  width: 16%;
+}
+.waving-hand {
+  width: 25px;
+  height: 25px;
+  margin-left: 2%;
+  animation: wave 2s infinite; /* Adjust the timing as needed */
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
